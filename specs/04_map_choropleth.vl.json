@@ -1,0 +1,179 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Choropleth: 2025 AFL home-game attendance for clubs based in each state, per 1,000 residents (ABS population, Sept 2025).",
+  "width": "container",
+  "height": 440,
+  "background": null,
+  "data": {
+    "url": "data/australia_states.geojson",
+    "format": {
+      "type": "json",
+      "property": "features"
+    }
+  },
+  "projection": {
+    "type": "conicEqualArea",
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -132,
+      0
+    ]
+  },
+  "transform": [
+    {
+      "lookup": "properties.STATE_NAME",
+      "from": {
+        "data": {
+          "url": "data/state_population.csv",
+          "format": {
+            "type": "csv",
+            "parse": {
+              "population_sep2025": "number",
+              "afl_clubs": "number",
+              "afl_home_attendance_2025": "number"
+            }
+          }
+        },
+        "key": "state",
+        "fields": [
+          "population_sep2025",
+          "afl_clubs",
+          "afl_home_attendance_2025"
+        ]
+      }
+    },
+    {
+      "calculate": "datum.afl_clubs > 0 ? 1000 * datum.afl_home_attendance_2025 / datum.population_sep2025 : null",
+      "as": "per_1000"
+    },
+    {
+      "calculate": "datum.afl_clubs > 0 ? format(datum.per_1000, ',.0f') + ' per 1,000' : 'No AFL club based here'",
+      "as": "status"
+    },
+    {
+      "calculate": "datum.properties.STATE_NAME === 'Western Australia' ? 122.5 : datum.properties.STATE_NAME === 'South Australia' ? 135.5 : datum.properties.STATE_NAME === 'Victoria' ? 144.3 : datum.properties.STATE_NAME === 'New South Wales' ? 146.8 : 144.5",
+      "as": "label_lon"
+    },
+    {
+      "calculate": "datum.properties.STATE_NAME === 'Western Australia' ? -25.5 : datum.properties.STATE_NAME === 'South Australia' ? -30.0 : datum.properties.STATE_NAME === 'Victoria' ? -36.9 : datum.properties.STATE_NAME === 'New South Wales' ? -32.5 : -22.5",
+      "as": "label_lat"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#fbf8f1",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "color": {
+          "condition": {
+            "test": "datum.per_1000 === null",
+            "value": "#e9e4d8"
+          },
+          "field": "per_1000",
+          "type": "quantitative",
+          "scale": {
+            "type": "log",
+            "scheme": "blues",
+            "domain": [
+              40,
+              700
+            ]
+          },
+          "legend": {
+            "title": [
+              "Home-game tickets",
+              "per 1,000 residents"
+            ],
+            "orient": "bottom",
+            "direction": "horizontal",
+            "gradientLength": 180,
+            "values": [
+              50,
+              100,
+              200,
+              400
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "properties.STATE_NAME",
+            "title": "State"
+          },
+          {
+            "field": "afl_clubs",
+            "title": "AFL clubs based here"
+          },
+          {
+            "field": "afl_home_attendance_2025",
+            "title": "Their total home crowd, 2025",
+            "format": ","
+          },
+          {
+            "field": "population_sep2025",
+            "title": "Population (Sept 2025)",
+            "format": ","
+          },
+          {
+            "field": "status",
+            "title": "Attendance rate"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.per_1000 !== null"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": {
+          "expr": "width < 520 ? 11 : 13"
+        },
+        "fontWeight": 700
+      },
+      "encoding": {
+        "longitude": {
+          "field": "label_lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "label_lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "per_1000",
+          "format": ",.0f"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.per_1000 > 250",
+            "value": "#ffffff"
+          },
+          "value": "#1d1b17"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Barlow",
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#5b574e",
+      "titleColor": "#1d1b17"
+    }
+  }
+}

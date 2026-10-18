@@ -1,0 +1,159 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Density plot: how crowd sizes are spread for day, twilight and night games, 2026 rounds 1–15. Taller curve = more games of that size. Click the legend to show one group. Source: AFL Tables.",
+  "width": "container",
+  "height": 300,
+  "data": {
+    "url": "data/afl_matches_2026_r1-15.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "round": "number",
+        "attendance": "number",
+        "date": "date"
+      }
+    }
+  },
+  "transform": [
+    {
+      "density": "attendance",
+      "groupby": [
+        "time_slot"
+      ],
+      "extent": [
+        0,
+        100000
+      ],
+      "bandwidth": 6000,
+      "steps": 120
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "value",
+      "type": "quantitative",
+      "title": "Crowd at a single game",
+      "axis": {
+        "format": ",.0f",
+        "values": [
+          0,
+          20000,
+          40000,
+          60000,
+          80000,
+          100000
+        ],
+        "grid": false
+      }
+    },
+    "y": {
+      "field": "density",
+      "type": "quantitative",
+      "title": "Share of games",
+      "stack": null,
+      "axis": {
+        "labels": false,
+        "ticks": false,
+        "grid": false
+      }
+    },
+    "color": {
+      "field": "time_slot",
+      "type": "nominal",
+      "title": null,
+      "scale": {
+        "domain": [
+          "Day (before 4pm)",
+          "Twilight (4–6pm)",
+          "Night (6pm or later)"
+        ],
+        "range": [
+          "#d9531e",
+          "#1f9e89",
+          "#1f5fa8"
+        ]
+      },
+      "legend": {
+        "orient": "top",
+        "direction": "horizontal",
+        "symbolType": "square"
+      }
+    },
+    "opacity": {
+      "condition": {
+        "param": "slot",
+        "value": 0.07
+      },
+      "value": 0.0
+    }
+  },
+  "layer": [
+    {
+      "params": [
+        {
+          "name": "slot",
+          "select": {
+            "type": "point",
+            "fields": [
+              "time_slot"
+            ]
+          },
+          "bind": "legend"
+        }
+      ],
+      "mark": {
+        "type": "area",
+        "interpolate": "monotone"
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.5,
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "opacity": {
+          "condition": {
+            "param": "slot",
+            "value": 1
+          },
+          "value": 0.12
+        }
+      }
+    }
+  ],
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Barlow",
+    "axis": {
+      "labelColor": "#6b665b",
+      "titleColor": "#6b665b",
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "gridColor": "#e7e1d3",
+      "domainColor": "#d8d2c4",
+      "tickColor": "#d8d2c4"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#3d3a33",
+      "titleColor": "#1d1b17"
+    },
+    "header": {
+      "labelFontSize": 13,
+      "labelColor": "#1d1b17",
+      "labelFontWeight": 600,
+      "titleFontSize": 0
+    },
+    "text": {
+      "color": "#3d3a33"
+    }
+  }
+}

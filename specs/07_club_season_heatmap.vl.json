@@ -1,0 +1,183 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Heatmap: average home-and-away crowd for each club and season, 2023–2025. Clubs sorted by 2025 average. Source: Wikipedia AFL season pages.",
+  "width": "container",
+  "height": {
+    "step": 26
+  },
+  "data": {
+    "url": "data/afl_club_attendance.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "lat": "number",
+        "lon": "number",
+        "tile_col": "number",
+        "tile_row": "number",
+        "home_games": "number",
+        "total_2023": "number",
+        "total_2024": "number",
+        "total_2025": "number",
+        "avg_2023": "number",
+        "avg_2024": "number",
+        "avg_2025": "number",
+        "members_2023": "number",
+        "members_2024": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "fold": [
+        "avg_2023",
+        "avg_2024",
+        "avg_2025"
+      ],
+      "as": [
+        "key",
+        "avg"
+      ]
+    },
+    {
+      "calculate": "substring(datum.key, 4)",
+      "as": "season"
+    },
+    {
+      "calculate": "format(datum.avg / 1000, '.1f') + 'k'",
+      "as": "label"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "season",
+      "type": "ordinal",
+      "title": null,
+      "axis": {
+        "orient": "top",
+        "labelAngle": 0,
+        "labelFontSize": 13,
+        "labelFontWeight": 600,
+        "domain": false,
+        "ticks": false
+      }
+    },
+    "y": {
+      "field": "club",
+      "type": "nominal",
+      "title": null,
+      "sort": {
+        "field": "avg_2025",
+        "order": "descending"
+      },
+      "axis": {
+        "domain": false,
+        "ticks": false,
+        "labelFontSize": 12.5,
+        "labelColor": "#3d3a33"
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "#fbf8f1",
+        "strokeWidth": 2,
+        "cornerRadius": 3
+      },
+      "encoding": {
+        "color": {
+          "field": "avg",
+          "type": "quantitative",
+          "title": "Average home crowd",
+          "scale": {
+            "scheme": "blues",
+            "domain": [
+              10000,
+              70000
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "gradientLength": 200,
+            "format": ",.0f",
+            "values": [
+              10000,
+              30000,
+              50000,
+              70000
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "club",
+            "title": "Club"
+          },
+          {
+            "field": "season",
+            "title": "Season"
+          },
+          {
+            "field": "avg",
+            "title": "Average home crowd",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": 500
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.avg > 42000",
+            "value": "#ffffff"
+          },
+          "value": "#1d1b17"
+        }
+      }
+    }
+  ],
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Barlow",
+    "axis": {
+      "labelColor": "#6b665b",
+      "titleColor": "#6b665b",
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "gridColor": "#e7e1d3",
+      "domainColor": "#d8d2c4",
+      "tickColor": "#d8d2c4"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#3d3a33",
+      "titleColor": "#1d1b17"
+    },
+    "header": {
+      "labelFontSize": 13,
+      "labelColor": "#1d1b17",
+      "labelFontWeight": 600,
+      "titleFontSize": 0
+    },
+    "text": {
+      "color": "#3d3a33"
+    }
+  }
+}

@@ -1,0 +1,365 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "AFL average crowd per game, 1990–2026: home-and-away season (area + line) and finals (dashed line). Source: AFL Tables season summary.",
+  "width": "container",
+  "height": 360,
+  "data": {
+    "url": "data/afl_season_totals_1990-2026.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "year": "number",
+        "ha_average": "number",
+        "finals_average": "number",
+        "ha_attendance": "number",
+        "total_attendance": "number",
+        "ha_games": "number",
+        "finals_games": "number"
+      }
+    }
+  },
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "quantitative",
+      "title": null,
+      "scale": {
+        "domain": [
+          1990,
+          2026
+        ]
+      },
+      "axis": {
+        "format": "d",
+        "values": [
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2020,
+          2026
+        ],
+        "grid": false
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "color": "#1f5fa8",
+        "opacity": 0.12,
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "y": {
+          "field": "ha_average",
+          "type": "quantitative",
+          "title": "Average crowd per game",
+          "scale": {
+            "domain": [
+              0,
+              80000
+            ]
+          },
+          "axis": {
+            "format": ",.0f",
+            "tickCount": 5
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "color": "#1f5fa8",
+        "strokeWidth": 2.5,
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "y": {
+          "field": "ha_average",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "color": "#d9531e",
+        "strokeWidth": 2,
+        "strokeDash": [
+          5,
+          4
+        ],
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "y": {
+          "field": "finals_average",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year === 2026"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 6,
+        "fontSize": 12,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "y": {
+          "field": "finals_average",
+          "type": "quantitative"
+        },
+        "text": {
+          "value": "Finals"
+        },
+        "color": {
+          "value": "#d9531e"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year === 2026"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 6,
+        "dy": 10,
+        "fontSize": 12,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "y": {
+          "field": "ha_average",
+          "type": "quantitative"
+        },
+        "text": {
+          "value": "Home & away"
+        },
+        "color": {
+          "value": "#1f5fa8"
+        }
+      }
+    },
+    {
+      "params": [
+        {
+          "name": "hover",
+          "select": {
+            "type": "point",
+            "fields": [
+              "year"
+            ],
+            "nearest": true,
+            "on": "pointerover",
+            "clear": "pointerout"
+          }
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "color": "#3d3a33",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "opacity": {
+          "condition": {
+            "param": "hover",
+            "empty": false,
+            "value": 0.5
+          },
+          "value": 0
+        },
+        "tooltip": [
+          {
+            "field": "year",
+            "title": "Season",
+            "format": "d"
+          },
+          {
+            "field": "ha_average",
+            "title": "Home & away average",
+            "format": ","
+          },
+          {
+            "field": "ha_games",
+            "title": "Home & away games"
+          },
+          {
+            "field": "finals_average",
+            "title": "Finals average",
+            "format": ","
+          },
+          {
+            "field": "total_attendance",
+            "title": "Season total (incl. finals)",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 60,
+        "color": "#1f5fa8",
+        "stroke": "#fbf8f1",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "y": {
+          "field": "ha_average",
+          "type": "quantitative"
+        },
+        "opacity": {
+          "condition": {
+            "param": "hover",
+            "empty": false,
+            "value": 1
+          },
+          "value": 0
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": 2019.4,
+            "y": 6665
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -6,
+        "dy": -14,
+        "fontSize": 11.5,
+        "lineHeight": 15,
+        "color": "#1d1b17",
+        "text": [
+          "2020: COVID-19 limits,",
+          "6,665 a game"
+        ]
+      },
+      "encoding": {
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": 2011.5,
+            "y": 31509
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dx": 0,
+        "dy": 34,
+        "fontSize": 11.5,
+        "lineHeight": 15,
+        "color": "#1d1b17",
+        "text": [
+          "2011–12: Gold Coast and",
+          "GWS join; average dips"
+        ]
+      },
+      "encoding": {
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": 2024.2,
+            "y": 37551
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dx": 0,
+        "dy": 70,
+        "fontSize": 11.5,
+        "lineHeight": 15,
+        "color": "#1d1b17",
+        "text": [
+          "2026: highest average",
+          "since at least 1990"
+        ]
+      },
+      "encoding": {
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Barlow",
+    "axis": {
+      "labelColor": "#6b665b",
+      "titleColor": "#6b665b",
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "gridColor": "#e7e1d3",
+      "domainColor": "#d8d2c4",
+      "tickColor": "#d8d2c4"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#3d3a33",
+      "titleColor": "#1d1b17"
+    },
+    "header": {
+      "labelFontSize": 13,
+      "labelColor": "#1d1b17",
+      "labelFontWeight": 600,
+      "titleFontSize": 0
+    },
+    "text": {
+      "color": "#3d3a33"
+    },
+    "axisY": {
+      "grid": true,
+      "domain": false,
+      "ticks": false
+    }
+  },
+  "background": null
+}

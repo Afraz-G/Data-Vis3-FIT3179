@@ -1,0 +1,219 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Tile-grid map: each AFL club is one equal-sized tile placed roughly where it is based. Colour shows the change in average home crowd between two seasons.",
+  "width": "container",
+  "height": 420,
+  "background": null,
+  "data": {
+    "url": "data/afl_club_attendance.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "lat": "number",
+        "lon": "number",
+        "tile_col": "number",
+        "tile_row": "number",
+        "home_games": "number",
+        "total_2023": "number",
+        "total_2024": "number",
+        "total_2025": "number",
+        "avg_2023": "number",
+        "avg_2024": "number",
+        "avg_2025": "number",
+        "members_2023": "number",
+        "members_2024": "number"
+      }
+    }
+  },
+  "params": [
+    {
+      "name": "period",
+      "value": "2024 \u2192 2025",
+      "bind": {
+        "input": "radio",
+        "options": [
+          "2023 \u2192 2024",
+          "2024 \u2192 2025",
+          "2023 \u2192 2025"
+        ],
+        "name": "Compare seasons: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "calculate": "period === '2023 \u2192 2024' ? datum.avg_2023 : period === '2024 \u2192 2025' ? datum.avg_2024 : datum.avg_2023",
+      "as": "from_avg"
+    },
+    {
+      "calculate": "period === '2023 \u2192 2024' ? datum.avg_2024 : datum.avg_2025",
+      "as": "to_avg"
+    },
+    {
+      "calculate": "(datum.to_avg - datum.from_avg) / datum.from_avg",
+      "as": "pct_change"
+    },
+    {
+      "calculate": "datum.to_avg - datum.from_avg",
+      "as": "abs_change"
+    },
+    {
+      "calculate": "(datum.pct_change >= 0 ? '+' : '') + format(datum.pct_change, '.0%')",
+      "as": "pct_label"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "tile_col",
+      "type": "ordinal",
+      "scale": {
+        "domain": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "paddingInner": 0.08
+      },
+      "axis": null
+    },
+    "y": {
+      "field": "tile_row",
+      "type": "ordinal",
+      "scale": {
+        "domain": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "paddingInner": 0.08
+      },
+      "axis": null
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "cornerRadius": 4
+      },
+      "encoding": {
+        "color": {
+          "field": "pct_change",
+          "type": "quantitative",
+          "scale": {
+            "scheme": "redblue",
+            "domainMid": 0,
+            "domain": [
+              -0.25,
+              0.25
+            ],
+            "clamp": true
+          },
+          "legend": {
+            "title": "Change in average home crowd",
+            "format": "+.0%",
+            "orient": "bottom",
+            "direction": "horizontal",
+            "gradientLength": 220,
+            "values": [
+              -0.2,
+              -0.1,
+              0,
+              0.1,
+              0.2
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "club",
+            "title": "Club"
+          },
+          {
+            "field": "base_city",
+            "title": "Based in"
+          },
+          {
+            "field": "from_avg",
+            "title": "Average before",
+            "format": ","
+          },
+          {
+            "field": "to_avg",
+            "title": "Average after",
+            "format": ","
+          },
+          {
+            "field": "abs_change",
+            "title": "Change per game",
+            "format": "+,"
+          },
+          {
+            "field": "pct_label",
+            "title": "Change (%)"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 13,
+        "fontWeight": 700,
+        "dy": -8
+      },
+      "encoding": {
+        "text": {
+          "field": "short"
+        },
+        "color": {
+          "condition": {
+            "test": "abs(datum.pct_change) > 0.12",
+            "value": "#ffffff"
+          },
+          "value": "#1d1b17"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "dy": 9
+      },
+      "encoding": {
+        "text": {
+          "field": "pct_label"
+        },
+        "color": {
+          "condition": {
+            "test": "abs(datum.pct_change) > 0.12",
+            "value": "#ffffff"
+          },
+          "value": "#3d3a33"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Barlow",
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#5b574e",
+      "titleColor": "#1d1b17"
+    }
+  }
+}

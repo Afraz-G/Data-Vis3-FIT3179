@@ -1,0 +1,210 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Heatmap: average crowd by day of the week and start time, 2026 rounds 1–15 (121 matches). Numbers show the average and how many games were played in that slot. Source: AFL Tables 2026 season page.",
+  "width": "container",
+  "height": 300,
+  "data": {
+    "url": "data/afl_matches_2026_r1-15.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "round": "number",
+        "attendance": "number",
+        "date": "date"
+      }
+    }
+  },
+  "transform": [
+    {
+      "aggregate": [
+        {
+          "op": "mean",
+          "field": "attendance",
+          "as": "avg"
+        },
+        {
+          "op": "count",
+          "as": "games"
+        }
+      ],
+      "groupby": [
+        "day",
+        "time_slot"
+      ]
+    },
+    {
+      "calculate": "format(datum.avg / 1000, '.1f') + 'k'",
+      "as": "avg_label"
+    },
+    {
+      "calculate": "datum.games + (datum.games === 1 ? ' game' : ' games')",
+      "as": "n_label"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "day",
+      "type": "ordinal",
+      "title": null,
+      "sort": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+        "Monday"
+      ],
+      "axis": {
+        "orient": "top",
+        "labelAngle": 0,
+        "labelFontSize": 13,
+        "labelFontWeight": 600,
+        "domain": false,
+        "ticks": false,
+        "labelExpr": "width < 500 ? slice(datum.label, 0, 3) : datum.label"
+      }
+    },
+    "y": {
+      "field": "time_slot",
+      "type": "ordinal",
+      "title": null,
+      "sort": [
+        "Day (before 4pm)",
+        "Twilight (4–6pm)",
+        "Night (6pm or later)"
+      ],
+      "axis": {
+        "labelFontSize": 12.5,
+        "domain": false,
+        "ticks": false,
+        "labelColor": "#3d3a33"
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "#fbf8f1",
+        "strokeWidth": 3,
+        "cornerRadius": 4
+      },
+      "encoding": {
+        "color": {
+          "field": "avg",
+          "type": "quantitative",
+          "title": "Average crowd",
+          "scale": {
+            "scheme": "oranges",
+            "domain": [
+              20000,
+              90000
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "gradientLength": 260,
+            "format": ",.0f",
+            "values": [
+              20000,
+              40000,
+              60000,
+              80000
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "day",
+            "title": "Day"
+          },
+          {
+            "field": "time_slot",
+            "title": "Start time"
+          },
+          {
+            "field": "avg",
+            "title": "Average crowd",
+            "format": ",.0f"
+          },
+          {
+            "field": "games",
+            "title": "Games"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 15,
+        "fontWeight": 700,
+        "dy": -7
+      },
+      "encoding": {
+        "text": {
+          "field": "avg_label"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.avg > 50000",
+            "value": "#ffffff"
+          },
+          "value": "#1d1b17"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 11.5,
+        "dy": 11
+      },
+      "encoding": {
+        "text": {
+          "field": "n_label"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.avg > 50000",
+            "value": "#ffffff"
+          },
+          "value": "#3d3a33"
+        }
+      }
+    }
+  ],
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Barlow",
+    "axis": {
+      "labelColor": "#6b665b",
+      "titleColor": "#6b665b",
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "gridColor": "#e7e1d3",
+      "domainColor": "#d8d2c4",
+      "tickColor": "#d8d2c4"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#3d3a33",
+      "titleColor": "#1d1b17"
+    },
+    "header": {
+      "labelFontSize": 13,
+      "labelColor": "#1d1b17",
+      "labelFontWeight": 600,
+      "titleFontSize": 0
+    },
+    "text": {
+      "color": "#3d3a33"
+    }
+  }
+}

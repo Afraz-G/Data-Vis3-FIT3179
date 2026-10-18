@@ -1,0 +1,332 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Spike map: every venue that hosted AFL in 2025. Spike height = total attendance at that venue. Orange = home grounds in the clubs' home cities; teal = regional and 'road trip' venues. Source: austadiums.com (2025 AFL crowds by stadium). Venue coordinates are approximate; spikes for Marvel Stadium, Norwood Oval and Engie Stadium are nudged sideways so they do not overlap neighbouring venues.",
+  "width": "container",
+  "height": 470,
+  "projection": {
+    "type": "conicEqualArea",
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -132,
+      0
+    ]
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/australia_states.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#e9e4d8",
+        "stroke": "#fbf8f1",
+        "strokeWidth": 1.5
+      }
+    },
+    {
+      "data": {
+        "url": "data/afl_venues_2025.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "games": "number",
+            "total_attendance": "number",
+            "average_attendance": "number",
+            "lat": "number",
+            "lon": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "calculate": "indexof(['MCG','Marvel Stadium','Adelaide Oval','Optus Stadium','SCG','Gabba','GMHBA Stadium','People First Stadium','Engie Stadium'], datum.venue) >= 0 ? 'Home ground in a club city' : 'Regional or road-trip venue'",
+          "as": "venue_type"
+        },
+        {
+          "calculate": "datum.venue === 'Marvel Stadium' ? datum.lon - 1.1 : datum.venue === 'Norwood Oval' ? datum.lon + 0.9 : datum.venue === 'Engie Stadium' ? datum.lon - 0.9 : datum.venue === 'GMHBA Stadium' ? datum.lon - 0.5 : datum.lon",
+          "as": "plot_lon"
+        },
+        {
+          "calculate": "datum.total_attendance * datum.total_attendance",
+          "as": "spike_area"
+        },
+        {
+          "calculate": "datum.venue + ' · ' + format(datum.total_attendance / 1e6, '.2f') + 'M'",
+          "as": "label"
+        }
+      ],
+      "encoding": {
+        "longitude": {
+          "field": "plot_lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "opacity": {
+          "condition": {
+            "param": "kind",
+            "value": 1
+          },
+          "value": 0.15
+        }
+      },
+      "layer": [
+        {
+          "params": [
+            {
+              "name": "kind",
+              "select": {
+                "type": "point",
+                "fields": [
+                  "venue_type"
+                ]
+              },
+              "bind": "legend"
+            }
+          ],
+          "mark": {
+            "type": "point",
+            "shape": "M0,0L0,-1",
+            "filled": false,
+            "strokeWidth": 3.5,
+            "strokeCap": "round"
+          },
+          "encoding": {
+            "size": {
+              "field": "spike_area",
+              "type": "quantitative",
+              "legend": null,
+              "scale": {
+                "type": "linear",
+                "domain": [
+                  0,
+                  9714392000000
+                ],
+                "range": [
+                  0,
+                  160000
+                ]
+              }
+            },
+            "color": {
+              "field": "venue_type",
+              "type": "nominal",
+              "title": null,
+              "scale": {
+                "domain": [
+                  "Home ground in a club city",
+                  "Regional or road-trip venue"
+                ],
+                "range": [
+                  "#d9531e",
+                  "#1f9e89"
+                ]
+              },
+              "legend": {
+                "orient": "bottom",
+                "direction": "horizontal",
+                "symbolType": "stroke",
+                "symbolStrokeWidth": 4
+              }
+            },
+            "tooltip": [
+              {
+                "field": "venue",
+                "title": "Venue"
+              },
+              {
+                "field": "city",
+                "title": "City / region"
+              },
+              {
+                "field": "games",
+                "title": "AFL games, 2025"
+              },
+              {
+                "field": "total_attendance",
+                "title": "Total attendance",
+                "format": ","
+              },
+              {
+                "field": "average_attendance",
+                "title": "Average crowd",
+                "format": ","
+              }
+            ]
+          }
+        },
+        {
+          "mark": {
+            "type": "circle",
+            "size": 34,
+            "stroke": "#fbf8f1",
+            "strokeWidth": 1
+          },
+          "encoding": {
+            "color": {
+              "field": "venue_type",
+              "type": "nominal",
+              "legend": null
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.venue === 'MCG'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 6,
+            "dy": -202,
+            "fontSize": {
+              "expr": "width < 520 ? 0 : 12"
+            },
+            "fontWeight": 600,
+            "color": "#1d1b17"
+          },
+          "encoding": {
+            "text": {
+              "field": "label"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.venue === 'Marvel Stadium'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 6,
+            "dy": -88,
+            "fontSize": {
+              "expr": "width < 520 ? 0 : 12"
+            },
+            "fontWeight": 600,
+            "color": "#1d1b17"
+          },
+          "encoding": {
+            "text": {
+              "field": "label"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.venue === 'Adelaide Oval'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 6,
+            "dy": -81,
+            "fontSize": {
+              "expr": "width < 520 ? 0 : 12"
+            },
+            "fontWeight": 600,
+            "color": "#1d1b17"
+          },
+          "encoding": {
+            "text": {
+              "field": "label"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.venue === 'Optus Stadium'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 6,
+            "dy": -70,
+            "fontSize": {
+              "expr": "width < 520 ? 0 : 12"
+            },
+            "fontWeight": 600,
+            "color": "#1d1b17"
+          },
+          "encoding": {
+            "text": {
+              "field": "label"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "indexof(['UTAS Stadium','TIO Stadium','Manuka Oval','Ninja Stadium','TIO Traeger Park'], datum.venue) >= 0"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 7,
+            "dy": 4,
+            "fontSize": {
+              "expr": "width < 520 ? 0 : 11.5"
+            },
+            "color": "#3d3a33"
+          },
+          "encoding": {
+            "text": {
+              "field": "city"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Barlow",
+    "axis": {
+      "labelColor": "#6b665b",
+      "titleColor": "#6b665b",
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "gridColor": "#e7e1d3",
+      "domainColor": "#d8d2c4",
+      "tickColor": "#d8d2c4"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#3d3a33",
+      "titleColor": "#1d1b17"
+    },
+    "header": {
+      "labelFontSize": 13,
+      "labelColor": "#1d1b17",
+      "labelFontWeight": 600,
+      "titleFontSize": 0
+    },
+    "text": {
+      "color": "#3d3a33"
+    }
+  }
+}

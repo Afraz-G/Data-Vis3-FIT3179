@@ -1,0 +1,250 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Connected scatterplot: club membership (x) against average home crowd (y). Each line runs from 2023 (hollow dot) to 2024 (filled dot). Hover to highlight a club. Source: Wikipedia AFL season pages (attendance and membership).",
+  "width": "container",
+  "height": 430,
+  "data": {
+    "url": "data/afl_club_attendance.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "lat": "number",
+        "lon": "number",
+        "tile_col": "number",
+        "tile_row": "number",
+        "home_games": "number",
+        "total_2023": "number",
+        "total_2024": "number",
+        "total_2025": "number",
+        "avg_2023": "number",
+        "avg_2024": "number",
+        "avg_2025": "number",
+        "members_2023": "number",
+        "members_2024": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "calculate": "[{season: 2023, members: datum.members_2023, avg: datum.avg_2023}, {season: 2024, members: datum.members_2024, avg: datum.avg_2024}]",
+      "as": "pair"
+    },
+    {
+      "flatten": [
+        "pair"
+      ]
+    },
+    {
+      "calculate": "datum.pair.season",
+      "as": "season"
+    },
+    {
+      "calculate": "datum.pair.members",
+      "as": "members"
+    },
+    {
+      "calculate": "datum.pair.avg",
+      "as": "avg"
+    },
+    {
+      "calculate": "datum.state === 'Victoria' ? 'Victorian club' : 'Interstate club'",
+      "as": "group"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "members",
+      "type": "quantitative",
+      "title": "Club members",
+      "scale": {
+        "domain": [
+          20000,
+          115000
+        ]
+      },
+      "axis": {
+        "format": ",.0f",
+        "tickCount": 6
+      }
+    },
+    "y": {
+      "field": "avg",
+      "type": "quantitative",
+      "title": "Average home crowd",
+      "scale": {
+        "domain": [
+          5000,
+          70000
+        ]
+      },
+      "axis": {
+        "format": ",.0f",
+        "tickCount": 6
+      }
+    },
+    "detail": {
+      "field": "club"
+    },
+    "color": {
+      "field": "group",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Victorian club",
+          "Interstate club"
+        ],
+        "range": [
+          "#1f5fa8",
+          "#d9531e"
+        ]
+      },
+      "legend": {
+        "title": null,
+        "orient": "top-left",
+        "symbolType": "circle"
+      }
+    },
+    "opacity": {
+      "condition": {
+        "param": "hl",
+        "empty": true,
+        "value": 1
+      },
+      "value": 0.2
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "order": {
+          "field": "season"
+        }
+      }
+    },
+    {
+      "params": [
+        {
+          "name": "hl",
+          "select": {
+            "type": "point",
+            "fields": [
+              "club"
+            ],
+            "on": "pointerover",
+            "clear": "pointerout"
+          }
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "size": 70,
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "fill": {
+          "condition": {
+            "test": "datum.season === 2024",
+            "field": "group",
+            "type": "nominal",
+            "scale": {
+              "domain": [
+                "Victorian club",
+                "Interstate club"
+              ],
+              "range": [
+                "#1f5fa8",
+                "#d9531e"
+              ]
+            },
+            "legend": null
+          },
+          "value": "#fbf8f1"
+        },
+        "tooltip": [
+          {
+            "field": "club",
+            "title": "Club"
+          },
+          {
+            "field": "season",
+            "title": "Season"
+          },
+          {
+            "field": "members",
+            "title": "Members",
+            "format": ","
+          },
+          {
+            "field": "avg",
+            "title": "Average home crowd",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.season === 2024 && indexof(['Collingwood','Carlton','West Coast','Gold Coast','Greater Western Sydney','Melbourne','Geelong'], datum.club) >= 0"
+        },
+        {
+          "calculate": "datum.club === 'Greater Western Sydney' ? 'GWS' : datum.club",
+          "as": "lab"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 9,
+        "dy": -8,
+        "fontSize": 12,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "text": {
+          "field": "lab"
+        },
+        "color": {
+          "value": "#3d3a33"
+        }
+      }
+    }
+  ],
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Barlow",
+    "axis": {
+      "labelColor": "#6b665b",
+      "titleColor": "#6b665b",
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "gridColor": "#e7e1d3",
+      "domainColor": "#d8d2c4",
+      "tickColor": "#d8d2c4"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#3d3a33",
+      "titleColor": "#1d1b17"
+    },
+    "header": {
+      "labelFontSize": 13,
+      "labelColor": "#1d1b17",
+      "labelFontWeight": 600,
+      "titleFontSize": 0
+    },
+    "text": {
+      "color": "#3d3a33"
+    }
+  }
+}

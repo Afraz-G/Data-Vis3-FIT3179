@@ -1,0 +1,122 @@
+round,date,day,start_time,time_slot,home_team,away_team,venue,venue_city,venue_state,attendance
+1,2026-03-05,Thursday,19:30,Night (6pm or later),Sydney,Carlton,SCG,Sydney,New South Wales,40372
+1,2026-03-06,Friday,19:05,Night (6pm or later),Gold Coast,Geelong,People First Stadium,Gold Coast,Queensland,19859
+1,2026-03-07,Saturday,16:15,Twilight (4–6pm),Greater Western Sydney,Hawthorn,Engie Stadium,Sydney,New South Wales,16157
+1,2026-03-07,Saturday,18:35,Night (6pm or later),Brisbane Lions,Western Bulldogs,Gabba,Brisbane,Queensland,31606
+1,2026-03-08,Sunday,19:20,Night (6pm or later),St Kilda,Collingwood,MCG,Melbourne,Victoria,82528
+2,2026-03-12,Thursday,19:30,Night (6pm or later),Carlton,Richmond,MCG,Melbourne,Victoria,74313
+2,2026-03-13,Friday,19:40,Night (6pm or later),Essendon,Hawthorn,MCG,Melbourne,Victoria,71384
+2,2026-03-14,Saturday,13:15,Day (before 4pm),Western Bulldogs,Greater Western Sydney,Marvel Stadium,Melbourne,Victoria,28318
+2,2026-03-14,Saturday,16:15,Twilight (4–6pm),Geelong,Fremantle,GMHBA Stadium,Geelong,Victoria,28715
+2,2026-03-14,Saturday,19:10,Night (6pm or later),Sydney,Brisbane Lions,SCG,Sydney,New South Wales,38128
+2,2026-03-14,Saturday,19:35,Night (6pm or later),Collingwood,Adelaide,MCG,Melbourne,Victoria,62482
+2,2026-03-15,Sunday,13:10,Day (before 4pm),North Melbourne,Port Adelaide,Marvel Stadium,Melbourne,Victoria,23318
+2,2026-03-15,Sunday,15:15,Day (before 4pm),Melbourne,St Kilda,MCG,Melbourne,Victoria,44577
+2,2026-03-15,Sunday,17:10,Twilight (4–6pm),Gold Coast,West Coast,People First Stadium,Gold Coast,Queensland,13309
+3,2026-03-19,Thursday,19:30,Night (6pm or later),Hawthorn,Sydney,MCG,Melbourne,Victoria,47945
+3,2026-03-20,Friday,19:10,Night (6pm or later),Adelaide,Western Bulldogs,Adelaide Oval,Adelaide,South Australia,49185
+3,2026-03-21,Saturday,13:15,Day (before 4pm),Richmond,Gold Coast,MCG,Melbourne,Victoria,30468
+3,2026-03-21,Saturday,16:15,Twilight (4–6pm),Greater Western Sydney,St Kilda,Engie Stadium,Sydney,New South Wales,9149
+3,2026-03-21,Saturday,16:35,Twilight (4–6pm),Fremantle,Melbourne,Optus Stadium,Perth,Western Australia,44736
+3,2026-03-22,Sunday,14:45,Day (before 4pm),Port Adelaide,Essendon,Adelaide Oval,Adelaide,South Australia,36049
+3,2026-03-22,Sunday,15:10,Day (before 4pm),West Coast,North Melbourne,Optus Stadium,Perth,Western Australia,47083
+4,2026-03-26,Thursday,19:30,Night (6pm or later),Geelong,Adelaide,GMHBA Stadium,Geelong,Victoria,20403
+4,2026-03-27,Friday,19:40,Night (6pm or later),Collingwood,Greater Western Sydney,Marvel Stadium,Melbourne,Victoria,41607
+4,2026-03-28,Saturday,12:35,Day (before 4pm),St Kilda,Brisbane Lions,Marvel Stadium,Melbourne,Victoria,31854
+4,2026-03-28,Saturday,13:15,Day (before 4pm),Fremantle,Richmond,Optus Stadium,Perth,Western Australia,35245
+4,2026-03-28,Saturday,19:35,Night (6pm or later),Essendon,North Melbourne,Marvel Stadium,Melbourne,Victoria,40154
+4,2026-03-29,Sunday,12:00,Day (before 4pm),Port Adelaide,West Coast,Adelaide Oval,Adelaide,South Australia,33754
+4,2026-03-29,Sunday,15:15,Day (before 4pm),Carlton,Melbourne,MCG,Melbourne,Victoria,67763
+5,2026-04-02,Thursday,18:30,Night (6pm or later),Brisbane Lions,Collingwood,Gabba,Brisbane,Queensland,34648
+5,2026-04-03,Friday,15:15,Day (before 4pm),North Melbourne,Carlton,Marvel Stadium,Melbourne,Victoria,45919
+5,2026-04-03,Friday,18:45,Night (6pm or later),Adelaide,Fremantle,Adelaide Oval,Adelaide,South Australia,48627
+5,2026-04-04,Saturday,16:15,Twilight (4–6pm),Richmond,Port Adelaide,MCG,Melbourne,Victoria,34471
+5,2026-04-04,Saturday,16:35,Twilight (4–6pm),West Coast,Sydney,Optus Stadium,Perth,Western Australia,50723
+5,2026-04-05,Sunday,15:15,Day (before 4pm),Melbourne,Gold Coast,MCG,Melbourne,Victoria,24287
+5,2026-04-05,Sunday,19:20,Night (6pm or later),Western Bulldogs,Essendon,Marvel Stadium,Melbourne,Victoria,38786
+5,2026-04-06,Monday,15:15,Day (before 4pm),Hawthorn,Geelong,MCG,Melbourne,Victoria,84712
+6,2026-04-09,Thursday,19:10,Night (6pm or later),Adelaide,Carlton,Adelaide Oval,Adelaide,South Australia,49184
+6,2026-04-10,Friday,19:10,Night (6pm or later),Collingwood,Fremantle,Adelaide Oval,Adelaide,South Australia,47275
+6,2026-04-11,Saturday,12:05,Day (before 4pm),North Melbourne,Brisbane Lions,Barossa Park,Barossa Valley,South Australia,10613
+6,2026-04-11,Saturday,12:45,Day (before 4pm),Essendon,Melbourne,Adelaide Oval,Adelaide,South Australia,38006
+6,2026-04-11,Saturday,15:45,Day (before 4pm),Sydney,Gold Coast,Norwood Oval,Adelaide,South Australia,9228
+6,2026-04-11,Saturday,19:05,Night (6pm or later),Hawthorn,Western Bulldogs,Adelaide Oval,Adelaide,South Australia,48451
+6,2026-04-12,Sunday,12:00,Day (before 4pm),Geelong,West Coast,Norwood Oval,Adelaide,South Australia,9434
+6,2026-04-12,Sunday,14:45,Day (before 4pm),Greater Western Sydney,Richmond,Barossa Park,Barossa Valley,South Australia,10508
+6,2026-04-12,Sunday,18:45,Night (6pm or later),Port Adelaide,St Kilda,Adelaide Oval,Adelaide,South Australia,47319
+7,2026-04-16,Thursday,19:30,Night (6pm or later),Carlton,Collingwood,MCG,Melbourne,Victoria,78058
+7,2026-04-17,Friday,19:20,Night (6pm or later),Geelong,Western Bulldogs,GMHBA Stadium,Geelong,Victoria,33200
+7,2026-04-17,Friday,19:50,Night (6pm or later),Sydney,Greater Western Sydney,SCG,Sydney,New South Wales,43986
+7,2026-04-18,Saturday,13:15,Day (before 4pm),Gold Coast,Essendon,People First Stadium,Gold Coast,Queensland,19039
+7,2026-04-18,Saturday,16:15,Twilight (4–6pm),Hawthorn,Port Adelaide,Marvel Stadium,Melbourne,Victoria,37070
+7,2026-04-18,Saturday,19:05,Night (6pm or later),Adelaide,St Kilda,Adelaide Oval,Adelaide,South Australia,45854
+7,2026-04-19,Sunday,13:10,Day (before 4pm),North Melbourne,Richmond,Marvel Stadium,Melbourne,Victoria,36584
+7,2026-04-19,Sunday,15:15,Day (before 4pm),Melbourne,Brisbane Lions,MCG,Melbourne,Victoria,41629
+7,2026-04-19,Sunday,15:10,Day (before 4pm),West Coast,Fremantle,Optus Stadium,Perth,Western Australia,54232
+8,2026-04-23,Thursday,19:30,Night (6pm or later),Western Bulldogs,Sydney,Marvel Stadium,Melbourne,Victoria,29523
+8,2026-04-24,Friday,19:40,Night (6pm or later),Richmond,Melbourne,MCG,Melbourne,Victoria,67364
+8,2026-04-25,Saturday,12:30,Day (before 4pm),Hawthorn,Gold Coast,UTAS Stadium,Launceston,Tasmania,8263
+8,2026-04-25,Saturday,15:20,Day (before 4pm),Essendon,Collingwood,MCG,Melbourne,Victoria,92231
+8,2026-04-25,Saturday,18:05,Night (6pm or later),Port Adelaide,Geelong,Adelaide Oval,Adelaide,South Australia,41164
+8,2026-04-25,Saturday,18:15,Night (6pm or later),Fremantle,Carlton,Optus Stadium,Perth,Western Australia,54100
+8,2026-04-26,Sunday,13:10,Day (before 4pm),St Kilda,West Coast,Marvel Stadium,Melbourne,Victoria,29070
+8,2026-04-26,Sunday,15:15,Day (before 4pm),Brisbane Lions,Adelaide,Gabba,Brisbane,Queensland,32629
+8,2026-04-26,Sunday,16:40,Twilight (4–6pm),Greater Western Sydney,North Melbourne,Manuka Oval,Canberra,Australian Capital Territory,12597
+9,2026-04-30,Thursday,19:30,Night (6pm or later),Collingwood,Hawthorn,MCG,Melbourne,Victoria,76632
+9,2026-05-01,Friday,19:30,Night (6pm or later),Western Bulldogs,Fremantle,Marvel Stadium,Melbourne,Victoria,23071
+9,2026-05-01,Friday,19:40,Night (6pm or later),Adelaide,Port Adelaide,Adelaide Oval,Adelaide,South Australia,53045
+9,2026-05-02,Saturday,12:35,Day (before 4pm),Essendon,Brisbane Lions,Marvel Stadium,Melbourne,Victoria,31595
+9,2026-05-02,Saturday,14:15,Day (before 4pm),West Coast,Richmond,Optus Stadium,Perth,Western Australia,46350
+9,2026-05-02,Saturday,16:35,Twilight (4–6pm),Geelong,North Melbourne,GMHBA Stadium,Geelong,Victoria,32485
+9,2026-05-02,Saturday,19:35,Night (6pm or later),Carlton,St Kilda,Marvel Stadium,Melbourne,Victoria,41062
+9,2026-05-03,Sunday,15:15,Day (before 4pm),Sydney,Melbourne,SCG,Sydney,New South Wales,40673
+9,2026-05-03,Sunday,19:20,Night (6pm or later),Gold Coast,Greater Western Sydney,People First Stadium,Gold Coast,Queensland,13537
+10,2026-05-07,Thursday,18:10,Night (6pm or later),Fremantle,Hawthorn,Optus Stadium,Perth,Western Australia,54140
+10,2026-05-08,Friday,19:30,Night (6pm or later),Brisbane Lions,Carlton,Gabba,Brisbane,Queensland,31147
+10,2026-05-08,Friday,19:40,Night (6pm or later),Port Adelaide,Western Bulldogs,Adelaide Oval,Adelaide,South Australia,33883
+10,2026-05-09,Saturday,13:15,Day (before 4pm),North Melbourne,Sydney,Marvel Stadium,Melbourne,Victoria,28156
+10,2026-05-09,Saturday,16:15,Twilight (4–6pm),Greater Western Sydney,Essendon,Engie Stadium,Sydney,New South Wales,9416
+10,2026-05-09,Saturday,18:40,Night (6pm or later),Gold Coast,St Kilda,TIO Stadium,Darwin,Northern Territory,10672
+10,2026-05-09,Saturday,19:35,Night (6pm or later),Geelong,Collingwood,MCG,Melbourne,Victoria,83166
+10,2026-05-10,Sunday,13:10,Day (before 4pm),Melbourne,West Coast,Marvel Stadium,Melbourne,Victoria,16650
+10,2026-05-10,Sunday,15:15,Day (before 4pm),Richmond,Adelaide,MCG,Melbourne,Victoria,22123
+11,2026-05-14,Thursday,19:30,Night (6pm or later),Brisbane Lions,Geelong,Gabba,Brisbane,Queensland,29221
+11,2026-05-15,Friday,19:30,Night (6pm or later),Sydney,Collingwood,SCG,Sydney,New South Wales,40627
+11,2026-05-15,Friday,19:40,Night (6pm or later),Gold Coast,Port Adelaide,TIO Stadium,Darwin,Northern Territory,11974
+11,2026-05-16,Saturday,12:45,Day (before 4pm),Adelaide,North Melbourne,Adelaide Oval,Adelaide,South Australia,41313
+11,2026-05-16,Saturday,16:15,Twilight (4–6pm),Melbourne,Hawthorn,MCG,Melbourne,Victoria,68557
+11,2026-05-16,Saturday,19:35,Night (6pm or later),Carlton,Western Bulldogs,Marvel Stadium,Melbourne,Victoria,39217
+11,2026-05-17,Sunday,13:10,Day (before 4pm),Essendon,Fremantle,MCG,Melbourne,Victoria,25100
+11,2026-05-17,Sunday,15:15,Day (before 4pm),St Kilda,Richmond,Marvel Stadium,Melbourne,Victoria,31230
+11,2026-05-17,Sunday,16:15,Twilight (4–6pm),West Coast,Greater Western Sydney,Optus Stadium,Perth,Western Australia,36781
+12,2026-05-21,Thursday,19:30,Night (6pm or later),Hawthorn,Adelaide,UTAS Stadium,Launceston,Tasmania,8312
+12,2026-05-22,Friday,19:45,Night (6pm or later),Richmond,Essendon,MCG,Melbourne,Victoria,78815
+12,2026-05-22,Friday,18:30,Night (6pm or later),Fremantle,St Kilda,Optus Stadium,Perth,Western Australia,53707
+12,2026-05-23,Saturday,13:15,Day (before 4pm),North Melbourne,Gold Coast,Marvel Stadium,Melbourne,Victoria,16260
+12,2026-05-23,Saturday,16:15,Twilight (4–6pm),Geelong,Sydney,GMHBA Stadium,Geelong,Victoria,35869
+12,2026-05-23,Saturday,16:35,Twilight (4–6pm),Collingwood,West Coast,MCG,Melbourne,Victoria,90028
+12,2026-05-23,Saturday,19:05,Night (6pm or later),Port Adelaide,Carlton,Adelaide Oval,Adelaide,South Australia,40597
+12,2026-05-24,Sunday,12:30,Day (before 4pm),Greater Western Sydney,Brisbane Lions,Engie Stadium,Sydney,New South Wales,8394
+12,2026-05-24,Sunday,15:15,Day (before 4pm),Western Bulldogs,Melbourne,Marvel Stadium,Melbourne,Victoria,29708
+13,2026-05-28,Thursday,19:30,Night (6pm or later),St Kilda,Hawthorn,Marvel Stadium,Melbourne,Victoria,33476
+13,2026-05-29,Friday,19:40,Night (6pm or later),Carlton,Geelong,MCG,Melbourne,Victoria,61081
+13,2026-05-30,Saturday,13:15,Day (before 4pm),Sydney,Richmond,SCG,Sydney,New South Wales,38013
+13,2026-05-30,Saturday,16:15,Twilight (4–6pm),Brisbane Lions,Fremantle,Gabba,Brisbane,Queensland,32423
+13,2026-05-30,Saturday,19:35,Night (6pm or later),Western Bulldogs,Collingwood,Marvel Stadium,Melbourne,Victoria,43430
+13,2026-05-31,Sunday,14:45,Day (before 4pm),Melbourne,Greater Western Sydney,TIO Traeger Park,Alice Springs,Northern Territory,6374
+13,2026-05-31,Sunday,17:20,Twilight (4–6pm),West Coast,Essendon,Optus Stadium,Perth,Western Australia,37623
+14,2026-06-04,Thursday,19:00,Night (6pm or later),Adelaide,Geelong,Adelaide Oval,Adelaide,South Australia,42340
+14,2026-06-05,Friday,19:40,Night (6pm or later),Hawthorn,Western Bulldogs,MCG,Melbourne,Victoria,59556
+14,2026-06-06,Saturday,12:15,Day (before 4pm),North Melbourne,Fremantle,Hands Oval,Bunbury,Western Australia,13331
+14,2026-06-06,Saturday,17:15,Twilight (4–6pm),Gold Coast,Brisbane Lions,People First Stadium,Gold Coast,Queensland,21139
+14,2026-06-06,Saturday,18:15,Night (6pm or later),West Coast,Port Adelaide,Optus Stadium,Perth,Western Australia,47479
+14,2026-06-07,Sunday,15:15,Day (before 4pm),Sydney,St Kilda,SCG,Sydney,New South Wales,42143
+14,2026-06-07,Sunday,19:20,Night (6pm or later),Essendon,Carlton,MCG,Melbourne,Victoria,76745
+14,2026-06-08,Monday,15:15,Day (before 4pm),Collingwood,Melbourne,MCG,Melbourne,Victoria,88019
+15,2026-06-11,Thursday,19:30,Night (6pm or later),Western Bulldogs,Adelaide,Marvel Stadium,Melbourne,Victoria,22761
+15,2026-06-12,Friday,19:40,Night (6pm or later),Geelong,Gold Coast,GMHBA Stadium,Geelong,Victoria,30276
+15,2026-06-13,Saturday,13:15,Day (before 4pm),Melbourne,Essendon,MCG,Melbourne,Victoria,41438
+15,2026-06-13,Saturday,14:15,Day (before 4pm),North Melbourne,West Coast,Optus Stadium,Perth,Western Australia,42409
+15,2026-06-13,Saturday,19:05,Night (6pm or later),Port Adelaide,Sydney,Adelaide Oval,Adelaide,South Australia,31350
+15,2026-06-14,Sunday,13:10,Day (before 4pm),Richmond,Brisbane Lions,Ninja Stadium,Hobart,Tasmania,10200
+15,2026-06-14,Sunday,15:15,Day (before 4pm),St Kilda,Greater Western Sydney,Marvel Stadium,Melbourne,Victoria,17748

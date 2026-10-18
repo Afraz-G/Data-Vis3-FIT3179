@@ -1,0 +1,248 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Bump chart: each club's rank by average home crowd, 2023–2025 (1 = biggest crowds). Click a club to highlight it; double-click to reset.",
+  "width": "container",
+  "height": 470,
+  "data": {
+    "url": "data/afl_club_attendance.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "lat": "number",
+        "lon": "number",
+        "tile_col": "number",
+        "tile_row": "number",
+        "home_games": "number",
+        "total_2023": "number",
+        "total_2024": "number",
+        "total_2025": "number",
+        "avg_2023": "number",
+        "avg_2024": "number",
+        "avg_2025": "number",
+        "members_2023": "number",
+        "members_2024": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "fold": [
+        "avg_2023",
+        "avg_2024",
+        "avg_2025"
+      ],
+      "as": [
+        "key",
+        "avg"
+      ]
+    },
+    {
+      "calculate": "toNumber(substring(datum.key, 4))",
+      "as": "season"
+    },
+    {
+      "window": [
+        {
+          "op": "row_number",
+          "as": "rank"
+        }
+      ],
+      "groupby": [
+        "season"
+      ],
+      "sort": [
+        {
+          "field": "avg",
+          "order": "descending"
+        }
+      ]
+    },
+    {
+      "calculate": "datum.state === 'Victoria' ? 'Victorian club' : 'Interstate club'",
+      "as": "group"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "season",
+      "type": "ordinal",
+      "title": null,
+      "scale": {
+        "padding": 1.1
+      },
+      "axis": {
+        "labelAngle": 0,
+        "labelFontSize": 13,
+        "labelFontWeight": 600,
+        "domain": false,
+        "ticks": false,
+        "orient": "top"
+      }
+    },
+    "y": {
+      "field": "rank",
+      "type": "ordinal",
+      "title": null,
+      "axis": null
+    },
+    "detail": {
+      "field": "club"
+    },
+    "color": {
+      "field": "group",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Victorian club",
+          "Interstate club"
+        ],
+        "range": [
+          "#1f5fa8",
+          "#d9531e"
+        ]
+      },
+      "legend": {
+        "title": null,
+        "orient": "bottom",
+        "direction": "horizontal",
+        "symbolType": "stroke",
+        "symbolStrokeWidth": 3
+      }
+    },
+    "opacity": {
+      "condition": {
+        "param": "pick",
+        "empty": true,
+        "value": 1
+      },
+      "value": 0.15
+    }
+  },
+  "layer": [
+    {
+      "params": [
+        {
+          "name": "pick",
+          "select": {
+            "type": "point",
+            "fields": [
+              "club"
+            ],
+            "on": "click",
+            "clear": "dblclick"
+          }
+        }
+      ],
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3,
+        "interpolate": "monotone"
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 120,
+        "stroke": "#fbf8f1",
+        "strokeWidth": 2,
+        "opacity": 1
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "club",
+            "title": "Club"
+          },
+          {
+            "field": "season",
+            "title": "Season"
+          },
+          {
+            "field": "rank",
+            "title": "Rank"
+          },
+          {
+            "field": "avg",
+            "title": "Average home crowd",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.season === 2023"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -12,
+        "fontSize": 12
+      },
+      "encoding": {
+        "text": {
+          "field": "short"
+        },
+        "color": {
+          "value": "#3d3a33"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.season === 2025"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 12,
+        "fontSize": 12
+      },
+      "encoding": {
+        "text": {
+          "field": "club"
+        },
+        "color": {
+          "value": "#3d3a33"
+        }
+      }
+    }
+  ],
+  "background": null,
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Barlow",
+    "axis": {
+      "labelColor": "#6b665b",
+      "titleColor": "#6b665b",
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "gridColor": "#e7e1d3",
+      "domainColor": "#d8d2c4",
+      "tickColor": "#d8d2c4"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#3d3a33",
+      "titleColor": "#1d1b17"
+    },
+    "header": {
+      "labelFontSize": 13,
+      "labelColor": "#1d1b17",
+      "labelFontWeight": 600,
+      "titleFontSize": 0
+    },
+    "text": {
+      "color": "#3d3a33"
+    }
+  }
+}

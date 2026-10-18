@@ -1,0 +1,249 @@
+/* =========================================================
+   Full House — FIT3179 Data Visualisation 2
+   Layout: one 1120px column, split into a 12-column-style grid
+   (text 1/3 + chart 2/3, alternating sides).
+   ========================================================= */
+
+:root {
+  --paper: #fbf8f1;      /* page background (warm off-white, like a footy record) */
+  --paper-2: #f3eee2;    /* tinted panels */
+  --ink: #1d1b17;        /* headings */
+  --ink-2: #3d3a33;      /* body text */
+  --muted: #6b665b;      /* captions, hints */
+  --rule: #d8d2c4;       /* hairlines */
+  --accent: #d9531e;     /* Sherrin orange: used for emphasis only */
+  --navy: #12305a;       /* hero background */
+  --blue: #1f5fa8;
+  --measure: 34rem;      /* comfortable line length for body text */
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink-2);
+  font-family: "Source Serif 4", Georgia, serif;   /* body: readable serif */
+  font-size: 1.075rem;
+  line-height: 1.62;
+}
+
+a { color: var(--blue); text-underline-offset: 2px; }
+a:hover { color: var(--accent); }
+strong { color: var(--ink); font-weight: 600; }
+
+.wrap {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Headings: condensed sports typeface ---------- */
+h1, h2, h3 { font-family: "Oswald", "Arial Narrow", sans-serif; color: var(--ink); }
+h2 { font-weight: 600; font-size: 2.1rem; line-height: 1.1; margin: 0 0 14px; }
+h3 { font-weight: 600; font-size: 1.45rem; line-height: 1.15; margin: 0 0 12px; letter-spacing: 0.005em; }
+
+/* ---------- Hero ---------- */
+.hero {
+  background:
+    radial-gradient(ellipse 60% 120% at 50% 130%, rgba(255,255,255,0.08) 0 59%, transparent 60%),
+    var(--navy);
+  color: #f6f1e4;
+  padding: 80px 0 68px;
+  border-bottom: 6px solid var(--accent);
+}
+.kicker {
+  font: 600 0.85rem/1.2 "Barlow", sans-serif;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #f3a57f;
+  margin: 0 0 12px;
+}
+h1 {
+  font-weight: 700;
+  font-size: clamp(3.4rem, 9vw, 6.8rem);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #f6f1e4;
+  margin: 0 0 22px;
+}
+.dek {
+  max-width: 42rem;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  margin: 0 0 22px;
+  color: #e6dfcd;
+}
+.byline { font: 400 0.95rem/1.4 "Barlow", sans-serif; color: #c9c0aa; margin: 0; }
+.byline strong { color: #f6f1e4; }
+
+/* ---------- Key numbers ---------- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 48px;
+}
+.stat { border-top: 3px solid var(--ink); padding-top: 12px; }
+.stat-num { display: block; font: 600 2.5rem/1.05 "Oswald", sans-serif; color: var(--ink); }
+.stat-label { display: block; margin-top: 6px; font: 400 0.95rem/1.35 "Barlow", sans-serif; color: var(--muted); }
+
+/* ---------- Table of contents ---------- */
+.toc {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.toc a {
+  font: 600 1rem/1.3 "Barlow", sans-serif;
+  color: var(--ink);
+  text-decoration: none;
+}
+.toc a span { display: block; font: 700 0.8rem/1 "Oswald", sans-serif; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 4px; }
+.toc a:hover { color: var(--accent); }
+
+/* ---------- Chapter openers ---------- */
+.chapter-head { padding-top: 96px; padding-bottom: 8px; }
+.chapter-num {
+  font: 700 0.85rem/1 "Oswald", sans-serif;
+  color: var(--accent);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+}
+.chapter-head h2 { font-size: clamp(2.2rem, 5vw, 3.2rem); text-transform: uppercase; letter-spacing: 0.01em; }
+.lede { max-width: 46rem; font-size: 1.22rem; line-height: 1.55; color: var(--ink-2); margin: 0; }
+
+/* ---------- Text + chart rows ---------- */
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);   /* text 1/3, chart 2/3 */
+  gap: 48px;
+  align-items: start;
+  padding-top: 48px;
+  margin-top: 40px;
+  border-top: 1px solid var(--rule);
+}
+.row.reverse { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+.row.reverse .text { order: 2; }
+.row.reverse .chart { order: 1; }
+.row.stacked { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+
+.text { max-width: var(--measure); }
+.text.wide { max-width: 48rem; }
+.text p { margin: 0 0 14px; }
+
+.hint {
+  font: 500 0.92rem/1.45 "Barlow", sans-serif;
+  color: var(--muted);
+  padding-left: 12px;
+  border-left: 3px solid var(--accent);
+}
+
+/* Two charts side by side */
+.pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 48px;
+  padding-top: 48px;
+  margin-top: 40px;
+  border-top: 1px solid var(--rule);
+}
+.chart-intro { font-size: 1rem; margin: 0 0 16px; max-width: 30rem; }
+
+/* ---------- Charts ---------- */
+.chart { margin: 0; min-width: 0; }
+.chart.center { display: flex; flex-direction: column; align-items: center; }
+.vis { width: 100%; }
+.vis-tile { max-width: 560px; }
+.idiom {
+  font: 600 0.75rem/1 "Barlow", sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 12px;
+}
+figcaption {
+  font: 400 0.88rem/1.45 "Barlow", sans-serif;
+  color: var(--muted);
+  margin-top: 10px;
+  max-width: 48rem;
+}
+.chart-error { font: 500 0.95rem "Barlow", sans-serif; color: var(--accent); }
+
+/* Vega-Lite input bindings (radio buttons under the tile map) */
+.vega-bindings { font: 500 0.95rem/1 "Barlow", sans-serif; color: var(--ink-2); margin-top: 6px; }
+.vega-bind-name { font-weight: 600; margin-right: 6px; }
+.vega-bind-radio label { margin-right: 14px; white-space: nowrap; }
+.vega-bind-radio input { accent-color: var(--accent); }
+
+/* Tooltip styling (vega-tooltip) */
+#vg-tooltip-element {
+  font-family: "Barlow", sans-serif;
+  font-size: 13px;
+  background: #fffdf8;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(29, 27, 23, 0.12);
+}
+
+/* "How to read a box plot" explainer */
+.explainer {
+  margin-top: 6px;
+  background: var(--paper-2);
+  border-radius: 6px;
+  padding: 10px 16px;
+  font: 400 0.95rem/1.5 "Barlow", sans-serif;
+}
+.explainer summary { cursor: pointer; font-weight: 600; color: var(--ink); }
+.explainer p { margin: 10px 0 4px; }
+
+/* ---------- Takeaways ---------- */
+.takeaways {
+  margin-top: 96px;
+  padding-top: 40px;
+  border-top: 3px solid var(--ink);
+}
+.takeaways > h2 { text-transform: uppercase; }
+.takeaway-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  margin-top: 16px;
+}
+.takeaway { background: var(--paper-2); border-radius: 8px; padding: 22px 22px 18px; }
+.t-num { font: 700 2.2rem/1 "Oswald", sans-serif; color: var(--accent); }
+.takeaway h3 { margin-top: 8px; font-size: 1.25rem; }
+.takeaway p { margin: 0; font-size: 1rem; }
+
+/* ---------- Footer / metadata ---------- */
+.sources {
+  margin-top: 80px;
+  padding-top: 32px;
+  padding-bottom: 56px;
+  border-top: 1px solid var(--rule);
+  font: 400 0.93rem/1.55 "Barlow", sans-serif;
+  color: var(--ink-2);
+}
+.about-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 48px; }
+.sources h2 { font-size: 1.35rem; }
+.sources h3 { font-size: 1.05rem; margin-top: 18px; }
+.sources ol, .sources ul { padding-left: 1.2rem; margin: 0; }
+.sources li { margin-bottom: 8px; }
+.license { margin-top: 28px; color: var(--muted); }
+
+/* ---------- Responsive: stack everything on narrow screens ---------- */
+@media (max-width: 900px) {
+  .stats, .toc { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .row, .row.reverse, .pair, .about-grid, .takeaway-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .row.reverse .text { order: 0; }
+  .chapter-head { padding-top: 64px; }
+}

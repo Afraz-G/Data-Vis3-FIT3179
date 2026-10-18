@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Full House: Who Fills Australia's Footy Grounds?</title>
+  <meta name="description" content="A data story about AFL crowds: where Australians watch football, which clubs draw the biggest crowds, and what fills a stadium.">
+  <meta name="author" content="[Your name]">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Vega, Vega-Lite and Vega-Embed: pinned versions so the page never breaks when a new release comes out -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.30.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.21.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.26.0"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">Sports Attendance Trends · Australian Football League</p>
+    <h1>Full House</h1>
+    <p class="dek">Australians bought 8.5 million tickets to AFL games in 2026, more than in any season on record. This story follows those crowds: where they are, which clubs draw them, and what makes a stadium fill up.</p>
+    <p class="byline">By <strong>Afraz G.</strong> · FIT3179 Data Visualisation 2</p>
+  </div>
+</header>
+
+<main>
+
+  <!-- ================= KEY NUMBERS ================= -->
+  <section class="wrap stats" aria-label="Key numbers for 2026">
+    <div class="stat">
+      <span class="stat-num">8.53M</span>
+      <span class="stat-label">tickets across 218 AFL games in 2026, finals included</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">37,551</span>
+      <span class="stat-label">average home-and-away crowd in 2026, the highest since at least 1990</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">1.9×</span>
+      <span class="stat-label">as many tickets as the NRL, Australia's next-biggest league</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">10 of 18</span>
+      <span class="stat-label">clubs are based in Victoria, where most of the crowds are</span>
+    </div>
+  </section>
+
+  <nav class="wrap toc" aria-label="Chapters">
+    <a href="#ch1"><span>01</span> Bigger than ever</a>
+    <a href="#ch2"><span>02</span> A Victorian heartland</a>
+    <a href="#ch3"><span>03</span> Club fortunes</a>
+    <a href="#ch4"><span>04</span> What fills the stands</a>
+  </nav>
+
+  <!-- ================= CHAPTER 1 ================= -->
+  <section class="chapter-head wrap" id="ch1">
+    <p class="chapter-num">Chapter 01</p>
+    <h2>Bigger than ever</h2>
+    <p class="lede">Crowds have grown for more than three decades. The pandemic wiped them out for two seasons, but fans came back in record numbers.</p>
+  </section>
+
+  <section class="wrap row">
+    <div class="text">
+      <h3>Thirty-seven seasons of crowds</h3>
+      <p>In 1990 an average home-and-away game drew about <strong>23,300</strong> people. By 2026 that figure was <strong>37,551</strong>, the highest in the 37 seasons shown.</p>
+      <p>The line is not a smooth climb. When Gold Coast (2011) and Greater Western Sydney (2012) joined, they added new games with small crowds in rugby league territory, so the average fell. In 2020 COVID-19 limits cut it to just 6,665.</p>
+      <p>Finals, shown dashed, have drawn between about 58,000 and 78,000 a game in normal seasons since 2013.</p>
+      <p class="hint">Hover over the chart to see any season's figures.</p>
+    </div>
+    <figure class="chart">
+      <p class="idiom">Fig. 1 · Annotated line and area chart</p>
+      <div id="vis01" class="vis"></div>
+      <figcaption>Average crowd per game for the home-and-away season (solid) and finals (dashed), 1990–2026. Source: AFL Tables.</figcaption>
+    </figure>
+  </section>
+
+  <section class="wrap row reverse">
+    <div class="text">
+      <h3>How the AFL compares</h3>
+      <p>Each square is <strong>50,000 tickets</strong>. In its latest season the AFL sold almost twice as many as the NRL, and more than the NRL, the A-League and the Big Bash put together.</p>
+      <p>Per game, the gap is smaller. The Big Bash plays only 44 matches, but averages <strong>24,748</strong> fans, about 13% more than the NRL's 21,860.</p>
+      <p class="hint">Hover over a square for the full figures.</p>
+    </div>
+    <figure class="chart">
+      <p class="idiom">Fig. 2 · Unit (waffle) chart</p>
+      <div id="vis02" class="vis"></div>
+      <figcaption>Total attendance in each competition's latest season: AFL and NRL in 2026, A-League and Big Bash League (BBL) in 2025–26. Finals included. Source: austadiums.com.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ================= CHAPTER 2 ================= -->
+  <section class="chapter-head wrap" id="ch2">
+    <p class="chapter-num">Chapter 02</p>
+    <h2>A Victorian heartland</h2>
+    <p class="lede">The AFL is a national league, but its crowds are not spread evenly across the nation. Three maps show where people actually turn up.</p>
+  </section>
+
+  <section class="wrap row">
+    <div class="text">
+      <h3>Melbourne outdraws the rest combined</h3>
+      <p>Each circle is a city, sized by the total crowd at home games of the clubs based there. Melbourne's nine clubs drew <strong>4.12 million</strong> people in 2025, more than every other city combined.</p>
+      <p>Perth and Adelaide each have two clubs and drew close to a million fans each. Sydney is bigger than both, yet its two clubs drew about half that. Brisbane's one club drew about a third.</p>
+      <p class="hint">Hover over a circle for exact figures.</p>
+    </div>
+    <figure class="chart">
+      <p class="idiom">Fig. 3 · Map 1 of 4 · Proportional symbol map</p>
+      <div id="vis03" class="vis"></div>
+      <figcaption>Total 2025 home-and-away crowd by the home city of each club (11 home games per club, Gather Round excluded). Some home games are played elsewhere, such as Hawthorn's games in Tasmania, but they still count for the home club. Source: Wikipedia season pages.</figcaption>
+    </figure>
+  </section>
+
+  <section class="wrap row reverse">
+    <div class="text">
+      <h3>Footy states and rugby league states</h3>
+      <p>Size alone hides how much each state cares, so this map divides attendance by population. Victoria's clubs sold <strong>635 tickets for every 1,000 Victorians</strong>, and South Australia comes next at 465.</p>
+      <p>New South Wales and Queensland, where rugby league is the main football code, sit below 90. Tasmania, shown in grey, has no club yet. Its own team joins the league in 2028.</p>
+      <p class="hint">The colour scale doubles at each step (a logarithmic scale), so big and small states can both be read. Grey states have no AFL club.</p>
+    </div>
+    <figure class="chart">
+      <p class="idiom">Fig. 4 · Map 2 of 4 · Choropleth map</p>
+      <div id="vis04" class="vis"></div>
+      <figcaption>2025 home-and-away attendance of clubs based in each state, per 1,000 residents. Population: September 2025 estimates. Sources: Wikipedia season pages; Australian Bureau of Statistics.</figcaption>
+    </figure>
+  </section>
+
+  <section class="wrap row">
+    <div class="text">
+      <h3>The MCG, and everywhere else</h3>
+      <p>Each spike is a venue, and its height shows the total crowd there in 2025. The MCG alone hosted <strong>38%</strong> of all AFL tickets. Add Marvel Stadium and Melbourne's two big grounds took 54%.</p>
+      <p>The AFL also takes games on the road, to Launceston, Hobart, Canberra, Darwin, Alice Springs, Bunbury, the Barossa, Ballarat and Adelaide's suburban Norwood Oval. Those 18 games drew about <strong>10,600</strong> fans each, just 2% of the year's crowds. They build fans in new places, not big gates.</p>
+      <p class="hint">Click a legend entry to highlight that type of venue.</p>
+    </div>
+    <figure class="chart">
+      <p class="idiom">Fig. 5 · Map 3 of 4 · Spike map</p>
+      <div id="vis05" class="vis"></div>
+      <figcaption>Total 2025 attendance at each venue (all 216 games, finals included). Spike height is proportional to attendance. Marvel Stadium, Norwood Oval, Engie Stadium and GMHBA Stadium are nudged slightly sideways so their spikes don't overlap. Source: austadiums.com.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ================= CHAPTER 3 ================= -->
+  <section class="chapter-head wrap" id="ch3">
+    <p class="chapter-num">Chapter 03</p>
+    <h2>Club fortunes</h2>
+    <p class="lede">Club crowds rise and fall from season to season. Who is drawing more fans, who is losing them, and how much does a big membership base help?</p>
+  </section>
+
+  <section class="wrap row stacked">
+    <div class="text wide">
+      <h3>Who is rising, who is slipping</h3>
+      <p>Every club gets one tile of the same size, placed roughly where it is based. That keeps small interstate clubs as visible as the Melbourne giants. Blue tiles grew their average home crowd, and red tiles shrank.</p>
+      <p>In 2025 the <strong>Western Bulldogs</strong> (+29%), Hawthorn and North Melbourne (both +15%) surged. Essendon (−21%) and Carlton (−16%) fell after their big 2024 seasons. Switch the seasons to see Melbourne drop 22% between 2023 and 2024.</p>
+    </div>
+    <figure class="chart center">
+      <p class="idiom">Fig. 6 · Map 4 of 4 · Tile-grid map (cartogram)</p>
+      <div id="vis06" class="vis vis-tile"></div>
+      <figcaption>Change in each club's average home-and-away crowd between seasons. Tiles show rough location, not scale, and colours are capped at ±25%. Source: Wikipedia season pages.</figcaption>
+    </figure>
+  </section>
+
+  <section class="wrap pair">
+    <figure class="chart">
+      <p class="idiom">Fig. 7 · Heatmap</p>
+      <h3>Three seasons at a glance</h3>
+      <p class="chart-intro">Darker cells mean bigger crowds. Collingwood leads every season, and the two newest clubs, Gold Coast and GWS, sit at the bottom.</p>
+      <div id="vis07" class="vis"></div>
+      <figcaption>Average home-and-away crowd by club and season, sorted by 2025. Source: Wikipedia season pages.</figcaption>
+    </figure>
+    <figure class="chart">
+      <p class="idiom">Fig. 8 · Bump chart</p>
+      <h3>The league ladder of crowds</h3>
+      <p class="chart-intro">Ranks shuffle more than the averages suggest. Melbourne fell from 5th to 12th in 2024, and the Bulldogs jumped from 15th to 10th in 2025.</p>
+      <div id="vis08" class="vis"></div>
+      <figcaption>Each club's rank by average home crowd (1 = biggest). Click a line to follow one club, and double-click to reset.</figcaption>
+    </figure>
+  </section>
+
+  <section class="wrap row">
+    <div class="text">
+      <h3>Members fill the seats</h3>
+      <p>Clubs with more paid-up members draw bigger home crowds, and the link is close. Collingwood had <strong>110,628</strong> members in 2024 and averaged almost 67,000 fans a game. GWS had 36,629 members and averaged about 12,000.</p>
+      <p>Each line runs from 2023 (hollow dot) to 2024 (filled dot). Twelve of the 18 clubs moved up and to the right, gaining members and crowds together. Melbourne and Richmond lost both.</p>
+      <p class="hint">Hover over a club to isolate it.</p>
+    </div>
+    <figure class="chart">
+      <p class="idiom">Fig. 9 · Connected scatterplot</p>
+      <div id="vis09" class="vis"></div>
+      <figcaption>Club members against average home crowd, 2023 → 2024. Source: Wikipedia season pages (attendance and membership tables).</figcaption>
+    </figure>
+  </section>
+
+  <!-- ================= CHAPTER 4 ================= -->
+  <section class="chapter-head wrap" id="ch4">
+    <p class="chapter-num">Chapter 04</p>
+    <h2>What fills the stands</h2>
+    <p class="lede">The same club can draw 20,000 one week and 80,000 the next. Match-by-match data from the first 15 rounds of 2026 (121 games) shows three things that matter: when a game is played, who is playing, and where.</p>
+  </section>
+
+  <section class="wrap row reverse">
+    <div class="text">
+      <h3>Prime time and public holidays</h3>
+      <p>Night games averaged <strong>44,600</strong> fans, about a third more than day games (33,200). Thursday and Friday nights, built for television, are reliably big.</p>
+      <p>The biggest numbers come from public holidays. Easter Monday and King's Birthday drew <strong>86,400</strong> on average. Sunday twilight games are the hardest to fill.</p>
+      <p class="hint">Small numbers in each cell show how many games were played in that slot. Treat averages from one or two games with care.</p>
+    </div>
+    <figure class="chart">
+      <p class="idiom">Fig. 10 · Heatmap</p>
+      <div id="vis10" class="vis"></div>
+      <figcaption>Average crowd by day and start time (local time), 2026 rounds 1–15. Blank cells had no games. Source: AFL Tables.</figcaption>
+    </figure>
+  </section>
+
+  <section class="wrap row">
+    <div class="text">
+      <h3>Night games shift the whole spread</h3>
+      <p>Averages can hide the full picture. This chart shows how crowd sizes are spread for each time slot: the taller the curve at a crowd size, the more games drew about that many people.</p>
+      <p>Day and twilight games bunch around 35,000. The night curve sits further right and has a second hump near 75,000. Those are the blockbuster night games at the MCG.</p>
+      <p class="hint">Click a legend entry to show one time slot on its own.</p>
+    </div>
+    <figure class="chart">
+      <p class="idiom">Fig. 11 · Density plot</p>
+      <div id="vis11" class="vis"></div>
+      <figcaption>Smoothed spread of single-game crowds for day, twilight and night games, 2026 rounds 1–15. Source: AFL Tables.</figcaption>
+    </figure>
+  </section>
+
+  <section class="wrap row stacked">
+    <div class="text wide">
+      <h3>The Collingwood effect</h3>
+      <p>Each row shows every 2026 game a club played, home or away. The middle line is the typical (median) crowd. Games involving <strong>Collingwood</strong> drew a median of 76,632, and the Magpies played in five of the six crowds above 80,000. When Collingwood comes to town, the stadium fills, whoever the home team is.</p>
+      <p>At the other end, Gold Coast and GWS drew under 20,000 in nine of their 13 games each. Their biggest crowds came when they were the away team.</p>
+      <details class="explainer">
+        <summary>How to read a box plot</summary>
+        <p>The coloured box covers the middle half of a club's games: a quarter of games drew fewer people than the left edge, and a quarter drew more than the right edge. The white line inside is the median, the crowd at the exact middle game. The thin line runs from the smallest to the largest crowd, and each grey dot is one game.</p>
+      </details>
+    </div>
+    <figure class="chart">
+      <p class="idiom">Fig. 12 · Box plot with every game shown</p>
+      <div id="vis12" class="vis"></div>
+      <figcaption>Crowds at games involving each club, home or away, 2026 rounds 1–15, sorted by median. Hover over a dot to see the match. Source: AFL Tables.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ================= CONCLUSION ================= -->
+  <section class="wrap takeaways">
+    <h2>What it adds up to</h2>
+    <div class="takeaway-grid">
+      <div class="takeaway">
+        <span class="t-num">1</span>
+        <h3>Record crowds, after a crash</h3>
+        <p>Attendance has fully recovered from COVID-19. The 2026 home-and-away average is the highest in at least 37 seasons.</p>
+      </div>
+      <div class="takeaway">
+        <span class="t-num">2</span>
+        <h3>Geography still rules</h3>
+        <p>Victoria, South Australia and Western Australia fill stadiums. The northern states, where rugby league dominates, remain the AFL's growth challenge.</p>
+      </div>
+      <div class="takeaway">
+        <span class="t-num">3</span>
+        <h3>Fixtures and fan bases drive gates</h3>
+        <p>Night slots, public holidays, big memberships and Collingwood matter more to a crowd than a club's form in any one season.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= ABOUT / METADATA ================= -->
+<footer class="wrap sources">
+  <div class="about-grid">
+    <div>
+      <h2>About this story</h2>
+      <p><strong>Why and who:</strong> crowd numbers show how popular each club and competition is, but they are usually reported one game at a time. This page gathers them for everyday Australian sports fans to answer three questions: are crowds growing, where are they, and what fills a stadium?</p>
+      <p><strong>Author:</strong> [Your name], Monash University (FIT3179). <strong>Date:</strong> 15 October 2026.</p>
+      <p><strong>Tools:</strong> charts built with <a href="https://vega.github.io/vega-lite/">Vega-Lite 5</a>. The Vega-Lite code for each chart is in the <code>specs/</code> folder of this <a href="https://github.com/">GitHub repository</a>. Layout uses hand-written HTML and CSS, with the fonts Oswald, Source Serif 4 and Barlow from Google Fonts.</p>
+      <p><strong>Use of AI:</strong> generative AI (Claude, Anthropic) was used to help write code, check data and edit text. All figures were checked against the sources listed.</p>
+    </div>
+    <div>
+      <h2>Data sources</h2>
+      <ol>
+        <li><strong>AFL season totals, 1990–2026:</strong> AFL Tables, <a href="https://afltables.com/afl/crowds/summary.html">Attendance summary</a>. Cross-checked against footyinfo, <a href="https://www.footyinfo.com/stats/match/attendance/by-season">Attendance by season</a>.</li>
+        <li><strong>2026 match-by-match crowds (rounds 1–15):</strong> AFL Tables, <a href="https://afltables.com/afl/seas/2026.html">2026 season</a>.</li>
+        <li><strong>Club attendance and membership, 2023–2025:</strong> Wikipedia, <a href="https://en.wikipedia.org/wiki/2023_AFL_season">2023</a>, <a href="https://en.wikipedia.org/wiki/2024_AFL_season">2024</a> and <a href="https://en.wikipedia.org/wiki/2025_AFL_season">2025</a> AFL season pages.</li>
+        <li><strong>Venue crowds 2025, and other competitions:</strong> austadiums.com, <a href="https://www.austadiums.com/sport/comp/afl/crowds?season=2025">AFL crowds</a>, <a href="https://www.austadiums.com/sport/comp/nrl/crowds">NRL</a>, <a href="https://www.austadiums.com/sport/comp/a-league/crowds">A-League</a>, <a href="https://www.austadiums.com/sport/comp/bbl/crowds">BBL</a>.</li>
+        <li><strong>Population, September 2025:</strong> Australian Bureau of Statistics, <a href="https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population">National, state and territory population</a>.</li>
+        <li><strong>State boundaries:</strong> <a href="https://github.com/rowanhogan/australian-states">rowanhogan/australian-states</a> (from ABS boundaries), simplified with mapshaper. The maps use an Albers equal-area projection.</li>
+      </ol>
+      <h3>Notes</h3>
+      <ul class="notes">
+        <li>The “Total” rows on the 2023 and 2024 Wikipedia pages don't match the sum of their club rows. This story uses the sum of the club rows, each of which matches its club's published average.</li>
+        <li>Match data covers rounds 1–15 of 2026, the part of the season available in a consistent table when this was made. Its biggest and smallest crowds match the lists published by austadiums.com.</li>
+        <li>Venue coordinates are approximate.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="license">© 2026 [Your name]. Text and charts released under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
+</footer>
+
+<script>
+  // Each chart is a separate Vega-Lite JSON file in /specs. vegaEmbed fetches the file,
+  // compiles Vega-Lite to Vega, and draws it as SVG inside the matching <div>.
+  const opts = { actions: false, renderer: "svg" };
+  const charts = [
+    ["#vis01", "specs/01_season_trend.vl.json"],
+    ["#vis02", "specs/02_cross_code_waffle.vl.json"],
+    ["#vis03", "specs/03_map_city_symbols.vl.json"],
+    ["#vis04", "specs/04_map_choropleth.vl.json"],
+    ["#vis05", "specs/05_map_venue_spikes.vl.json"],
+    ["#vis06", "specs/06_map_tile_grid.vl.json"],
+    ["#vis07", "specs/07_club_season_heatmap.vl.json"],
+    ["#vis08", "specs/08_club_rank_bump.vl.json"],
+    ["#vis09", "specs/09_members_vs_crowds.vl.json"],
+    ["#vis10", "specs/10_day_time_heatmap.vl.json"],
+    ["#vis11", "specs/11_slot_density.vl.json"],
+    ["#vis12", "specs/12_club_draw_boxplot.vl.json"]
+  ];
+  charts.forEach(([el, spec]) =>
+    vegaEmbed(el, spec, opts).catch(err => {
+      document.querySelector(el).innerHTML =
+        '<p class="chart-error">This chart could not load (' + spec + '). Check that the specs/ and data/ folders were uploaded.</p>';
+      console.error(spec, err);
+    })
+  );
+</script>
+</body>
+</html>

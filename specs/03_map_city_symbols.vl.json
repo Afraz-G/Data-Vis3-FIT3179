@@ -1,0 +1,297 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Proportional symbol map: total 2025 home-and-away crowds for AFL clubs, grouped by the city each club is based in.",
+  "width": "container",
+  "height": 440,
+  "background": null,
+  "projection": {
+    "type": "conicEqualArea",
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -132,
+      0
+    ]
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/australia_states.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#e9e4d8",
+        "stroke": "#fbf8f1",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "tooltip": {
+          "field": "properties.STATE_NAME",
+          "type": "nominal",
+          "title": "State"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/afl_club_attendance.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "lat": "number",
+            "lon": "number",
+            "tile_col": "number",
+            "tile_row": "number",
+            "home_games": "number",
+            "total_2023": "number",
+            "total_2024": "number",
+            "total_2025": "number",
+            "avg_2023": "number",
+            "avg_2024": "number",
+            "avg_2025": "number",
+            "members_2023": "number",
+            "members_2024": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "sum",
+              "field": "total_2025",
+              "as": "city_total"
+            },
+            {
+              "op": "count",
+              "as": "clubs"
+            },
+            {
+              "op": "mean",
+              "field": "lat",
+              "as": "lat"
+            },
+            {
+              "op": "mean",
+              "field": "lon",
+              "as": "lon"
+            }
+          ],
+          "groupby": [
+            "base_city",
+            "state"
+          ]
+        },
+        {
+          "calculate": "datum.city_total / (datum.clubs * 11)",
+          "as": "per_game"
+        },
+        {
+          "calculate": "datum.base_city + ' \u00b7 ' + format(datum.city_total, '.2s')",
+          "as": "label"
+        }
+      ],
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        }
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "circle",
+            "fill": "#d9531e",
+            "fillOpacity": 0.78,
+            "stroke": "#fbf8f1",
+            "strokeWidth": 2
+          },
+          "encoding": {
+            "size": {
+              "field": "city_total",
+              "type": "quantitative",
+              "scale": {
+                "range": [
+                  60,
+                  5200
+                ]
+              },
+              "legend": {
+                "title": "Total home crowd, 2025",
+                "format": ".2s",
+                "values": [
+                  250000,
+                  1000000,
+                  4000000
+                ],
+                "orient": "bottom",
+                "symbolFillColor": "#d9531e",
+                "symbolStrokeColor": "#fbf8f1",
+                "symbolOpacity": 0.78,
+                "direction": "horizontal"
+              }
+            },
+            "tooltip": [
+              {
+                "field": "base_city",
+                "title": "City"
+              },
+              {
+                "field": "clubs",
+                "title": "AFL clubs based here"
+              },
+              {
+                "field": "city_total",
+                "title": "Total home crowd 2025",
+                "format": ","
+              },
+              {
+                "field": "per_game",
+                "title": "Average per home game",
+                "format": ",.0f"
+              }
+            ]
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.base_city === 'Melbourne'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "fontSize": {
+              "expr": "width < 520 ? 0 : 12.5"
+            },
+            "fontWeight": 600,
+            "color": "#1d1b17",
+            "align": "left",
+            "dx": 44,
+            "dy": -10
+          },
+          "encoding": {
+            "text": {
+              "field": "label"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.base_city === 'Geelong'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "fontSize": {
+              "expr": "width < 520 ? 0 : 12.5"
+            },
+            "fontWeight": 600,
+            "color": "#1d1b17",
+            "align": "right",
+            "dx": -14,
+            "dy": 22
+          },
+          "encoding": {
+            "text": {
+              "field": "label"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "indexof(['Melbourne','Geelong','Brisbane','Gold Coast'], datum.base_city) < 0"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "fontSize": {
+              "expr": "width < 520 ? 0 : 12.5"
+            },
+            "fontWeight": 600,
+            "color": "#1d1b17",
+            "align": "left",
+            "dx": 18,
+            "dy": 0
+          },
+          "encoding": {
+            "text": {
+              "field": "label"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.base_city === 'Brisbane'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "fontSize": {
+              "expr": "width < 520 ? 0 : 12.5"
+            },
+            "fontWeight": 600,
+            "color": "#1d1b17",
+            "align": "right",
+            "dx": -12,
+            "dy": -6
+          },
+          "encoding": {
+            "text": {
+              "field": "label"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.base_city === 'Gold Coast'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "fontSize": {
+              "expr": "width < 520 ? 0 : 12.5"
+            },
+            "fontWeight": 600,
+            "color": "#1d1b17",
+            "align": "right",
+            "dx": -12,
+            "dy": 12
+          },
+          "encoding": {
+            "text": {
+              "field": "label"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Barlow",
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#5b574e",
+      "titleColor": "#1d1b17"
+    }
+  }
+}
