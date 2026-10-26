@@ -1,0 +1,228 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Bullet chart: each venue's average 2025 AFL crowd (coloured bar) inside its capacity (grey bar), sorted by how full it was on average. Colours match Fig. 5: orange = home ground in a club city, teal = regional or road-trip venue. Sources: austadiums.com (2025 crowds by stadium); Wikipedia, List of Australian Football League grounds (capacities).",
+  "width": "container",
+  "height": {
+    "step": 30
+  },
+  "background": null,
+  "data": {
+    "url": "data/afl_venues_2025.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "games": "number",
+        "total_attendance": "number",
+        "average_attendance": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "lookup": "venue",
+      "from": {
+        "data": {
+          "url": "data/afl_venue_capacity.csv",
+          "format": {
+            "type": "csv",
+            "parse": {
+              "capacity": "number"
+            }
+          }
+        },
+        "key": "venue",
+        "fields": [
+          "capacity",
+          "ground_name"
+        ]
+      }
+    },
+    {
+      "filter": "isValid(datum.capacity) && datum.venue !== 'Hands Oval'"
+    },
+    {
+      "calculate": "datum.average_attendance / datum.capacity",
+      "as": "fill"
+    },
+    {
+      "calculate": "datum.capacity - datum.average_attendance",
+      "as": "empty_seats"
+    },
+    {
+      "calculate": "format(datum.fill, '.0%') + ' full'",
+      "as": "fill_label"
+    },
+    {
+      "calculate": "datum.venue + ' (' + datum.city + ')'",
+      "as": "venue_label"
+    },
+    {
+      "calculate": "indexof(['MCG','Marvel Stadium','Adelaide Oval','Optus Stadium','SCG','Gabba','GMHBA Stadium','People First Stadium','Engie Stadium'], datum.venue) >= 0 ? 'Home ground in a club city' : 'Regional or road-trip venue'",
+      "as": "venue_type"
+    }
+  ],
+  "encoding": {
+    "y": {
+      "field": "venue_label",
+      "type": "nominal",
+      "title": null,
+      "sort": {
+        "field": "fill",
+        "order": "descending"
+      },
+      "axis": {
+        "domain": false,
+        "ticks": false,
+        "labelFontSize": 12.5,
+        "labelColor": "#3d3a33",
+        "labelLimit": 220
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "color": "#e6dfcf",
+        "height": {
+          "band": 0.78
+        },
+        "cornerRadiusEnd": 3
+      },
+      "encoding": {
+        "x": {
+          "field": "capacity",
+          "type": "quantitative",
+          "title": "Spectators",
+          "scale": {
+            "domain": [
+              0,
+              116000
+            ]
+          },
+          "axis": {
+            "format": ",.0f",
+            "values": [
+              0,
+              20000,
+              40000,
+              60000,
+              80000,
+              100000
+            ],
+            "grid": false
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "bar",
+        "height": {
+          "band": 0.42
+        },
+        "cornerRadiusEnd": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "average_attendance",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "venue_type",
+          "type": "nominal",
+          "title": null,
+          "scale": {
+            "domain": [
+              "Home ground in a club city",
+              "Regional or road-trip venue"
+            ],
+            "range": [
+              "#d9531e",
+              "#1f9e89"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "symbolType": "square"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "venue",
+            "title": "Venue"
+          },
+          {
+            "field": "city",
+            "title": "City / region"
+          },
+          {
+            "field": "games",
+            "title": "AFL games, 2025"
+          },
+          {
+            "field": "average_attendance",
+            "title": "Average crowd",
+            "format": ","
+          },
+          {
+            "field": "capacity",
+            "title": "Capacity",
+            "format": ","
+          },
+          {
+            "field": "empty_seats",
+            "title": "Empty seats (average)",
+            "format": ","
+          },
+          {
+            "field": "fill_label",
+            "title": "How full"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 6,
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#1d1b17"
+      },
+      "encoding": {
+        "x": {
+          "field": "capacity",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "fill_label"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Barlow, Helvetica Neue, Arial, sans-serif",
+    "axis": {
+      "labelColor": "#6b665b",
+      "titleColor": "#6b665b",
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "domainColor": "#d8d2c4",
+      "tickColor": "#d8d2c4"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "labelColor": "#3d3a33"
+    },
+    "text": {
+      "color": "#3d3a33"
+    }
+  }
+}

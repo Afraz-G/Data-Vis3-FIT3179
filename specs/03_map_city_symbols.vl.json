@@ -285,7 +285,7 @@
     "view": {
       "stroke": null
     },
-    "font": "Barlow",
+    "font": "Barlow, Helvetica Neue, Arial, sans-serif",
     "legend": {
       "labelFontSize": 12,
       "titleFontSize": 12,

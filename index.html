@@ -183,7 +183,7 @@
   <section class="wrap row">
     <div class="text">
       <h3>Members fill the seats</h3>
-      <p>Clubs with more paid-up members draw bigger home crowds, and the link is close. <span class="hl k-vic">Collingwood</span> had <strong>110,628</strong> members in 2024 and averaged almost 67,000 fans a game. <span class="hl k-int">GWS</span> had 36,629 members and averaged about 12,000. Each club has much more than 0 fans and the chart has been truncated to show differences more clearly.</p>
+      <p>Clubs with more paid-up members draw bigger home crowds, and the link is close. <span class="hl k-vic">Collingwood</span> had <strong>110,628</strong> members in 2024 and averaged almost 67,000 fans a game. <span class="hl k-int">GWS</span> had 36,629 members and averaged about 12,000.</p>
       <p>Each line runs from 2023 (hollow dot) to 2024 (filled dot). Twelve of the 18 clubs moved up and to the right, gaining members and crowds together. <span class="hl k-vic">Melbourne and Richmond</span> lost both.</p>
       <p class="hint">Hover over a club to isolate it.</p>
       <p class="side-caption">Club members against average home crowd, 2023 → 2024. Source: Wikipedia season pages (attendance and membership tables).</p>
@@ -229,6 +229,21 @@
     </figure>
   </section>
 
+  <section class="wrap row reverse">
+    <div class="text">
+      <h3>How full are the grounds?</h3>
+      <p>Each grey bar is a venue's capacity, and the coloured bar inside it is its average 2025 crowd. The <span class="hl k-home">MCG</span> drew the biggest crowds, but at <strong>61% full</strong> it still had about 39,000 empty seats on a typical day.</p>
+      <p>The fullest grounds are small ones on the road. <span class="hl k-road">Darwin's TIO Stadium (92%)</span> and <span class="hl k-road">Launceston's UTAS Stadium (88%)</span> were close to sold out. Among the big stadiums, <span class="hl k-home">Adelaide Oval (79%)</span> fills best.</p>
+      <p class="hint">Hover over a bar for games played, average crowd, capacity and empty seats. Colours match the venue types in Fig. 5.</p>
+    </div>
+    <figure class="chart">
+      <p class="idiom">Fig. 12 · Bullet chart</p>
+      <div id="vis12" class="vis"></div>
+      <figcaption>Average 2025 AFL crowd at each venue (all games, finals included) against its listed capacity, sorted by how full it was. Hands Oval in Bunbury is left out because its one crowd (12,715) was larger than its listed capacity (8,000), and Barossa Park and Norwood Oval have no listed capacity. The Gabba is listed at 42,000 by Wikipedia and 37,000 by austadiums; the chart uses 42,000. Sources: austadiums.com (crowds); Wikipedia, List of Australian Football League grounds (capacities).</figcaption>
+    </figure>
+  </section>
+
+
   <!-- ================= CONCLUSION ================= -->
   <section class="wrap takeaways">
     <h2>What it adds up to</h2>
@@ -258,10 +273,9 @@
   <div class="about-grid">
     <div>
       <h2>About this story</h2>
-      <p><strong>Why and who:</strong> crowd numbers show how popular each club and competition is, but they are usually reported one game at a time. This page gathers them for everyday Australian sports fans to answer three questions: are crowds growing, where are they, and what fills a stadium?</p>
-      <p><strong>Author:</strong> [Your name], Monash University (FIT3179). <strong>Date:</strong> 15 October 2026.</p>
+      <p><strong>Author:</strong> [Afraz Gul], Monash University (FIT3179). <strong>Date:</strong> 15 October 2026.</p>
       <p><strong>Tools:</strong> charts built with <a href="https://vega.github.io/vega-lite/">Vega-Lite 5</a>. The Vega-Lite code for each chart is in the <code>specs/</code> folder of this <a href="https://github.com/">GitHub repository</a>. Layout uses hand-written HTML and CSS, with the fonts Oswald, Source Serif 4 and Barlow from Google Fonts.</p>
-      <p><strong>Use of AI:</strong> generative AI (Claude, Anthropic) was used to help write code, check data and edit text. All figures were checked against the sources listed.</p>
+      <p><strong>Use of AI:</strong> generative AI (Claude, Anthropic) was used to help write code. All figures were checked against the sources listed.</p>
     </div>
     <div>
       <h2>Data sources</h2>
@@ -270,6 +284,7 @@
         <li><strong>2026 match-by-match crowds (rounds 1–15):</strong> AFL Tables, <a href="https://afltables.com/afl/seas/2026.html">2026 season</a>.</li>
         <li><strong>Club attendance and membership, 2023–2025:</strong> Wikipedia, <a href="https://en.wikipedia.org/wiki/2023_AFL_season">2023</a>, <a href="https://en.wikipedia.org/wiki/2024_AFL_season">2024</a> and <a href="https://en.wikipedia.org/wiki/2025_AFL_season">2025</a> AFL season pages.</li>
         <li><strong>Venue crowds 2025, and other competitions:</strong> austadiums.com, <a href="https://www.austadiums.com/sport/comp/afl/crowds?season=2025">AFL crowds</a>, <a href="https://www.austadiums.com/sport/comp/nrl/crowds">NRL</a>, <a href="https://www.austadiums.com/sport/comp/a-league/crowds">A-League</a>, <a href="https://www.austadiums.com/sport/comp/bbl/crowds">BBL</a>.</li>
+        <li><strong>Venue capacities:</strong> Wikipedia, <a href="https://en.wikipedia.org/wiki/List_of_Australian_Football_League_grounds">List of Australian Football League grounds</a>, cross-checked against austadiums.com, <a href="https://www.austadiums.com/stadiums/major">Major Australian stadiums</a>.</li>
         <li><strong>Population, September 2025:</strong> Australian Bureau of Statistics, <a href="https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population">National, state and territory population</a>.</li>
         <li><strong>State boundaries:</strong> <a href="https://github.com/rowanhogan/australian-states">rowanhogan/australian-states</a> (from ABS boundaries), simplified with mapshaper. The maps use an Albers equal-area projection.</li>
       </ol>
@@ -281,7 +296,7 @@
       </ul>
     </div>
   </div>
-  <p class="license">© 2026 [Your name]. Text and charts released under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
+  <p class="license">© 2026 [Afraz Gul]. Text and charts released under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
 </footer>
 
 <script>
@@ -299,7 +314,8 @@
     ["#vis08", "specs/08_club_rank_bump.vl.json"],
     ["#vis09", "specs/09_members_vs_crowds.vl.json"],
     ["#vis10", "specs/10_day_time_heatmap.vl.json"],
-    ["#vis11", "specs/11_slot_density.vl.json"]
+    ["#vis11", "specs/11_slot_density.vl.json"],
+    ["#vis12", "specs/12_venue_fill.vl.json"]
   ];
   // Fig. 6's radio buttons are drawn in the text column (vega-embed "bind" option)
   const perChart = { "#vis06": { bind: "#vis06-controls" } };

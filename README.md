@@ -25,7 +25,7 @@ data/          data
 | 9 | `09_members_vs_crowds.vl.json` | Connected scatterplot |
 | 10 | `10_day_time_heatmap.vl.json` | Heatmap (day × start time) |
 | 11 | `11_slot_density.vl.json` | Density plot (click legend to filter) |
-| 12 | `12_club_draw_boxplot.vl.json` | Box plot with every game overlaid |
+| 12 | `12_venue_fill.vl.json` | Stacked bar chart comparing capacity and fill rate of stadiums |
 
 
 
