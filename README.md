@@ -12,8 +12,8 @@ data/          data
 ```
 
 ## Charts
-| # | File | Idiom | Advanced? |
-|---|------|-------|-----------|
+| # | File | Idiom | 
+|---|------|-------|
 | 1 | `01_season_trend.vl.json` | Annotated line + area chart |
 | 2 | `02_cross_code_waffle.vl.json` | Unit (waffle) chart |
 | 3 | `03_map_city_symbols.vl.json` | **Map:** proportional symbol map |

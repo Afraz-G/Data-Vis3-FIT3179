@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Bullet chart: each venue's average 2025 AFL crowd (coloured bar) inside its capacity (grey bar), sorted by how full it was on average. Colours match Fig. 5: orange = home ground in a club city, teal = regional or road-trip venue. Sources: austadiums.com (2025 crowds by stadium); Wikipedia, List of Australian Football League grounds (capacities).",
+  "description": "Stacked bar chart: each venue's average 2025 AFL crowd (coloured bar) inside its capacity (grey bar), sorted by how full it was on average. Colours match Fig. 5: orange = home ground in a club city, teal = regional or road-trip venue. Sources: austadiums.com (2025 crowds by stadium); Wikipedia, List of Australian Football League grounds (capacities).",
   "width": "container",
   "height": {
     "step": 30
