@@ -139,9 +139,10 @@
         "type": "text",
         "align": "left",
         "dx": 6,
-        "dy": 10,
+        "dy": 16,
         "fontSize": 12,
-        "fontWeight": 600
+        "fontWeight": 600,
+        "lineHeight": 15
       },
       "encoding": {
         "y": {
@@ -149,7 +150,11 @@
           "type": "quantitative"
         },
         "text": {
-          "value": "Home & away"
+          "value": [
+            "Home & away",
+            "(2026: highest",
+            "since 1990)"
+          ]
         },
         "color": {
           "value": "#1f5fa8"
@@ -240,35 +245,6 @@
       "data": {
         "values": [
           {
-            "year": 2019.4,
-            "y": 6665
-          }
-        ]
-      },
-      "mark": {
-        "type": "text",
-        "align": "right",
-        "dx": -6,
-        "dy": -14,
-        "fontSize": 11.5,
-        "lineHeight": 15,
-        "color": "#1d1b17",
-        "text": [
-          "2020: COVID-19 limits,",
-          "6,665 a game"
-        ]
-      },
-      "encoding": {
-        "y": {
-          "field": "y",
-          "type": "quantitative"
-        }
-      }
-    },
-    {
-      "data": {
-        "values": [
-          {
             "year": 2011.5,
             "y": 31509
           }
@@ -293,42 +269,13 @@
           "type": "quantitative"
         }
       }
-    },
-    {
-      "data": {
-        "values": [
-          {
-            "year": 2024.2,
-            "y": 37551
-          }
-        ]
-      },
-      "mark": {
-        "type": "text",
-        "align": "center",
-        "dx": 0,
-        "dy": 70,
-        "fontSize": 11.5,
-        "lineHeight": 15,
-        "color": "#1d1b17",
-        "text": [
-          "2026: highest average",
-          "since at least 1990"
-        ]
-      },
-      "encoding": {
-        "y": {
-          "field": "y",
-          "type": "quantitative"
-        }
-      }
     }
   ],
   "config": {
     "view": {
       "stroke": null
     },
-    "font": "Barlow",
+    "font": "Barlow, Helvetica Neue, Arial, sans-serif",
     "axis": {
       "labelColor": "#6b665b",
       "titleColor": "#6b665b",

@@ -26,7 +26,7 @@
       },
       "mark": {
         "type": "geoshape",
-        "fill": "#e9e4d8",
+        "fill": "#cdc3ad",
         "stroke": "#fbf8f1",
         "strokeWidth": 1.5
       },
@@ -93,7 +93,7 @@
           "as": "per_game"
         },
         {
-          "calculate": "datum.base_city + ' \u00b7 ' + format(datum.city_total, '.2s')",
+          "calculate": "datum.base_city + ' · ' + format(datum.city_total, '.2s')",
           "as": "label"
         }
       ],

@@ -24,7 +24,7 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink-2);
-  font-family: "Source Serif 4", Georgia, serif;   /* body: readable serif */
+  font-family: "Barlow", "Helvetica Neue", Arial, sans-serif;   /* body: clean sans-serif */
   font-size: 1.075rem;
   line-height: 1.62;
 }
@@ -43,7 +43,7 @@ strong { color: var(--ink); font-weight: 600; }
 /* ---------- Headings: condensed sports typeface ---------- */
 h1, h2, h3 { font-family: "Oswald", "Arial Narrow", sans-serif; color: var(--ink); }
 h2 { font-weight: 600; font-size: 2.1rem; line-height: 1.1; margin: 0 0 14px; }
-h3 { font-weight: 600; font-size: 1.45rem; line-height: 1.15; margin: 0 0 12px; letter-spacing: 0.005em; }
+h3 { font-weight: 700; font-size: 1.55rem; line-height: 1.15; margin: 0 0 12px; letter-spacing: 0.01em; color: #12305a; }
 
 /* ---------- Hero ---------- */
 .hero {
@@ -110,6 +110,23 @@ h1 {
 .toc a span { display: block; font: 700 0.8rem/1 "Oswald", sans-serif; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 4px; }
 .toc a:hover { color: var(--accent); }
 
+/* ---------- Colour-linked phrases: text colour = the matching chart colour ----------
+   Pale chart colours are deepened slightly so they stay readable as text. */
+.hl { font-weight: 700; color: var(--c); }
+.hl strong { color: inherit; font-weight: 700; }
+.k-ha, .k-nrl, .k-vic, .k-night { --c: #1f5fa8; }      /* blue: home & away, NRL, Victorian clubs, night games */
+.k-fin, .k-afl, .k-int, .k-day, .k-city, .k-home { --c: #c94a17; } /* orange (chart #d9531e, deepened for text) */
+.k-al, .k-twi, .k-road { --c: #178a77; }               /* teal (chart #1f9e89, deepened for text) */
+.k-bbl { --c: #8b5fbf; }                               /* purple: Big Bash */
+.k-high { --c: #08519c; }                              /* dark end of the blue scale */
+.k-low { --c: #3d85c6; }                               /* pale end of the blue scale (deepened for text) */
+.k-none { --c: #857b68; }                              /* grey: no club (deepened for text) */
+.k-up { --c: #2166ac; }                                /* tile map: crowds grew */
+.k-down { --c: #b2182b; }                              /* tile map: crowds fell */
+.k-hot { --c: #a63603; }                               /* darkest heatmap cell */
+.k-pale { --c: #c96a12; }                              /* palest heatmap cell (deepened for text) */
+.key-note { font: 500 0.9rem/1.4 "Barlow", sans-serif; color: var(--muted); margin: 14px auto 0; }
+
 /* ---------- Chapter openers ---------- */
 .chapter-head { padding-top: 96px; padding-bottom: 8px; }
 .chapter-num {
@@ -163,7 +180,7 @@ h1 {
 .chart { margin: 0; min-width: 0; }
 .chart.center { display: flex; flex-direction: column; align-items: center; }
 .vis { width: 100%; }
-.vis-tile { max-width: 560px; }
+.vis-tile { max-width: none; }
 .idiom {
   font: 600 0.75rem/1 "Barlow", sans-serif;
   letter-spacing: 0.1em;
@@ -171,6 +188,20 @@ h1 {
   color: var(--muted);
   margin: 0 0 12px;
 }
+/* Captions moved beside their chart: fills the space under the text column */
+.side-caption {
+  font: 400 0.88rem/1.45 "Barlow", sans-serif !important;
+  color: var(--muted);
+  border-top: 1px solid var(--rule);
+  padding-top: 10px;
+  margin-top: 18px !important;
+}
+.side-controls { margin: 4px 0 4px; }
+.side-controls .vega-bindings { margin-top: 0; }
+.side-controls .vega-bind { display: block; }
+.side-controls .vega-bind-name { display: block; margin-bottom: 2px; }
+.side-controls .vega-bind-radio label { display: inline-block; margin: 4px 14px 0 0; }
+
 figcaption {
   font: 400 0.88rem/1.45 "Barlow", sans-serif;
   color: var(--muted);

@@ -66,6 +66,26 @@
     {
       "mark": {
         "type": "geoshape",
+        "fill": "#d6cfbf",
+        "stroke": "#fbf8f1",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "properties.STATE_NAME",
+            "title": "State"
+          },
+          {
+            "field": "status",
+            "title": "Attendance rate"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "geoshape",
         "stroke": "#fbf8f1",
         "strokeWidth": 1.5
       },
@@ -160,6 +180,37 @@
           },
           "value": "#1d1b17"
         }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "color": "#6b665b",
+        "lineHeight": 15,
+        "text": [
+          "No AFL",
+          "club"
+        ]
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        }
+      },
+      "data": {
+        "values": [
+          {
+            "lon": 133.4,
+            "lat": -19.6
+          }
+        ]
       }
     }
   ],

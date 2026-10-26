@@ -82,6 +82,84 @@
   },
   "layer": [
     {
+      "data": {
+        "values": [
+          {
+            "day": "Thursday",
+            "time_slot": "Day (before 4pm)"
+          },
+          {
+            "day": "Friday",
+            "time_slot": "Day (before 4pm)"
+          },
+          {
+            "day": "Saturday",
+            "time_slot": "Day (before 4pm)"
+          },
+          {
+            "day": "Sunday",
+            "time_slot": "Day (before 4pm)"
+          },
+          {
+            "day": "Monday",
+            "time_slot": "Day (before 4pm)"
+          },
+          {
+            "day": "Thursday",
+            "time_slot": "Twilight (4–6pm)"
+          },
+          {
+            "day": "Friday",
+            "time_slot": "Twilight (4–6pm)"
+          },
+          {
+            "day": "Saturday",
+            "time_slot": "Twilight (4–6pm)"
+          },
+          {
+            "day": "Sunday",
+            "time_slot": "Twilight (4–6pm)"
+          },
+          {
+            "day": "Monday",
+            "time_slot": "Twilight (4–6pm)"
+          },
+          {
+            "day": "Thursday",
+            "time_slot": "Night (6pm or later)"
+          },
+          {
+            "day": "Friday",
+            "time_slot": "Night (6pm or later)"
+          },
+          {
+            "day": "Saturday",
+            "time_slot": "Night (6pm or later)"
+          },
+          {
+            "day": "Sunday",
+            "time_slot": "Night (6pm or later)"
+          },
+          {
+            "day": "Monday",
+            "time_slot": "Night (6pm or later)"
+          }
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "fill": "#ece6d8",
+        "stroke": "#fbf8f1",
+        "strokeWidth": 3,
+        "cornerRadius": 4
+      },
+      "encoding": {
+        "tooltip": {
+          "value": "No games in this slot"
+        }
+      }
+    },
+    {
       "mark": {
         "type": "rect",
         "stroke": "#fbf8f1",
@@ -172,6 +250,136 @@
           "value": "#3d3a33"
         }
       }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "day": "Thursday",
+            "time_slot": "Day (before 4pm)"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "lineHeight": 14,
+        "color": "#6b665b",
+        "fontStyle": "italic",
+        "text": [
+          "No games:",
+          "weekday games",
+          "start at night"
+        ]
+      },
+      "encoding": {
+        "tooltip": {
+          "value": "No games in this slot"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "day": "Thursday",
+            "time_slot": "Twilight (4–6pm)"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "lineHeight": 14,
+        "color": "#6b665b",
+        "fontStyle": "italic",
+        "text": [
+          "No games"
+        ]
+      },
+      "encoding": {
+        "tooltip": {
+          "value": "No games in this slot"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "day": "Friday",
+            "time_slot": "Twilight (4–6pm)"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "lineHeight": 14,
+        "color": "#6b665b",
+        "fontStyle": "italic",
+        "text": [
+          "No games"
+        ]
+      },
+      "encoding": {
+        "tooltip": {
+          "value": "No games in this slot"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "day": "Monday",
+            "time_slot": "Twilight (4–6pm)"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "lineHeight": 14,
+        "color": "#6b665b",
+        "fontStyle": "italic",
+        "text": [
+          "No games:",
+          "Monday games",
+          "are holiday",
+          "afternoons only"
+        ]
+      },
+      "encoding": {
+        "tooltip": {
+          "value": "No games in this slot"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "day": "Monday",
+            "time_slot": "Night (6pm or later)"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "lineHeight": 14,
+        "color": "#6b665b",
+        "fontStyle": "italic",
+        "text": [
+          "No games"
+        ]
+      },
+      "encoding": {
+        "tooltip": {
+          "value": "No games in this slot"
+        }
+      }
     }
   ],
   "background": null,
@@ -179,7 +387,7 @@
     "view": {
       "stroke": null
     },
-    "font": "Barlow",
+    "font": "Barlow, Helvetica Neue, Arial, sans-serif",
     "axis": {
       "labelColor": "#6b665b",
       "titleColor": "#6b665b",

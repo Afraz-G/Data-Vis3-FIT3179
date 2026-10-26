@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Spike map: every venue that hosted AFL in 2025. Spike height = total attendance at that venue. Orange = home grounds in the clubs' home cities; teal = regional and 'road trip' venues. Source: austadiums.com (2025 AFL crowds by stadium). Venue coordinates are approximate; spikes for Marvel Stadium, Norwood Oval and Engie Stadium are nudged sideways so they do not overlap neighbouring venues.",
   "width": "container",
-  "height": 470,
+  "height": 554,
   "projection": {
     "type": "conicEqualArea",
     "parallels": [
